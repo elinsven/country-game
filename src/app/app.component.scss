@@ -1,0 +1,54 @@
+.container {
+    margin: 20px 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    width: 60%;
+    max-width: 450px;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.form, form {
+    width: 80vw;
+    max-width: 450px;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-raised-button {
+    width: 100%;
+}
+
+.mat-list-base {
+    padding: 0;
+}
+
+.guessing-list {
+    margin: 20px 0;
+
+    .item-row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    #country-name, #distance, #direction {
+        width: calc(100%/3);
+        text-align: center;
+        flex: 0 0 auto;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
