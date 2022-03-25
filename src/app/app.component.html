@@ -1,4 +1,12 @@
 <div class="container">
+  <!-- Loading page -->
+  <ng-container *ngIf="!randomCountry">
+    <div class="loading-screen">
+      <mat-spinner></mat-spinner>
+      <p>Loading game...</p>
+    </div>
+
+  </ng-container>
   <ng-container *ngIf="randomCountry">
     <div class="content">
       <!-- Country image -->

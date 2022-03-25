@@ -13,6 +13,8 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatIconModule } from "@angular/material/icon";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { MatIconModule } from "@angular/material/icon";
     MatInputModule,
     MatListModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule
   ],
   providers: [],
