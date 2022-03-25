@@ -45,5 +45,13 @@
   "main": "karma.conf.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elinsven/country-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elinsven/country-game/issues"
+  },
+  "homepage": "https://github.com/elinsven/country-game#readme"
 }
