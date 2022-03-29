@@ -1,8 +1,0 @@
-{
-    "/api/*": {
-        "target": "https://country-game-api.herokuapp.com",
-        "pathRewrite": {
-            "^/api": ""
-        }
-    }
-}

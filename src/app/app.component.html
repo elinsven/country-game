@@ -32,15 +32,13 @@
         <mat-list role="list" *ngFor="let guess of guesses">
           <mat-list-item role="listitem">
             <div class="item-row">
-              <div id="country-name">
+              <div class="col">
                 <p>{{ guess.country | uppercase }}</p>
               </div>
-              
-              <div id="distance">
+              <div class="col">
                 <p>{{ this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) }}km</p>
               </div>
-              
-              <div id="direction">
+              <div class="col">
                 <mat-icon [ngStyle]="calculateIconDirection(guess.location[0], guess.location[1])">south</mat-icon>
               </div> 
             </div>
@@ -55,6 +53,5 @@
         <button mat-raised-button (click)="playAgain()">Play again</button>
       </div>
     </div>
- 
   </ng-container>
 </div>

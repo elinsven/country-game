@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
+
 })
+
 export class ApiService {
-  baseUrl = environment.baseUrl;
-  apiUrl = this.baseUrl + "/getCountries";
+  baseUrl: string = environment.baseUrl;
+  apiUrl: string = this.baseUrl + "/getCountries";
 
   constructor(private http: HttpClient) { }
 
