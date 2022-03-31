@@ -17,8 +17,8 @@
         <form [formGroup]="form">
           <mat-form-field>
             <mat-label>Enter country</mat-label>
-            <input matInput type="text" formControlName="country" [matAutocomplete]="auto">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <input matInput type="text" formControlName="country" [matAutocomplete]="auto" #trigger="matAutocompleteTrigger">
+            <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let option of filteredOptions | async" [value]="option.country | uppercase">
                 {{ option.country | uppercase }}
               </mat-option>

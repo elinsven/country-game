@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatInputModule } from "@angular/material/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatAutocompleteModule, MatAutocompleteTrigger } from "@angular/material/autocomplete";
 import { MatListModule } from "@angular/material/list";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -37,7 +37,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatProgressSpinnerModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MatAutocompleteTrigger],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
