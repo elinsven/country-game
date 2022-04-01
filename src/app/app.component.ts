@@ -51,7 +51,6 @@ export class AppComponent implements OnInit {
      this.countries.sort((a, b) => (a.country > b.country) ? 1 : -1);
      const random = Math.floor(Math.random() * this.countries.length);
      this.randomCountry = this.countries[random];
-     console.log(this.randomCountry);
 
     }, err => {
       console.log(err);
