@@ -46,6 +46,7 @@ img {
 
 .guessing-list {
     margin: 20px 0;
+    border-radius: 5px;
 
     .item-row {
         width: 100%;
@@ -62,5 +63,27 @@ img {
     p {
         margin: 0;
     }
+
+    #country-name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+.red {
+    background-color: #ffa0a0;
+}
+
+.yellow {
+    background-color: #fffca0;
+}
+
+.green {
+    background-color: #C4FFA0;
+}
+
+.mat-divider {
+    background-color: black;
 }
 

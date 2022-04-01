@@ -29,17 +29,19 @@
 
        <!-- Answers -->
        <div  class="guessing-list">
-        <mat-list role="list" *ngFor="let guess of guesses">
+        <mat-list role="list" *ngFor="let guess of guesses; last as lastGuess" [class.red]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 20000"
+        [class.yellow]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 10000"
+        [class.green]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 3000">
           <mat-list-item role="listitem">
             <div class="item-row">
               <div class="col">
-                <p>{{ guess.country | uppercase }}</p>
+                <p id="country-name">{{ guess.country | uppercase }}</p>
               </div>
               <div class="col">
-                <p>{{ this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) }}km</p>
+                <p *ngIf="!gameWon || !lastGuess">{{ this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) }}km</p>
               </div>
               <div class="col">
-                <mat-icon [ngStyle]="calculateIconDirection(guess.location[0], guess.location[1])">south</mat-icon>
+                <mat-icon *ngIf="!gameWon || !lastGuess" [ngStyle]="calculateIconDirection(guess.location[0], guess.location[1])">south</mat-icon>
               </div> 
             </div>
           </mat-list-item>
@@ -49,7 +51,7 @@
     </div>
 
       <!-- Play again button -->
-      <div class="play-again-btn" *ngIf="guesses.length == 5 || (currentGuess | lowercase) == (randomCountry.country | lowercase)">
+      <div class="play-again-btn" *ngIf="guesses.length === 5 || gameWon">
         <button mat-raised-button (click)="playAgain()">Play again</button>
       </div>
     </div>

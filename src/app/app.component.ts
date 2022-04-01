@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   filteredOptions: Observable<Country[]>;
   guesses: any = [];
   currentGuess: string;
-  inputDisabled: boolean = false;
+  gameWon: boolean = false;
 
   constructor(private api: ApiService, 
     private sanitizer: DomSanitizer, 
@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
      this.countries.sort((a, b) => (a.country > b.country) ? 1 : -1);
      const random = Math.floor(Math.random() * this.countries.length);
      this.randomCountry = this.countries[random];
+     console.log(this.randomCountry);
 
     }, err => {
       console.log(err);
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      country: new FormControl({value: null, disabled: this.inputDisabled})
+      country: new FormControl(null)
     });
   }
 
@@ -99,10 +100,11 @@ export class AppComponent implements OnInit {
     const correctCountry = this.randomCountry.country.toUpperCase();
     if (this.guesses.length === 5 && this.currentGuess?.toUpperCase() !== correctCountry) {
       this._initMatSnackBar(`THE ANSWER WAS ${correctCountry}`, "Close", undefined);
-      this.inputDisabled = true;
+      this.form.controls["country"].disable();
     } else if (this.currentGuess?.toUpperCase()  === correctCountry) {
       this._initMatSnackBar("CORRECT", "Close", undefined);
-      this.inputDisabled = true;
+      this.form.controls["country"].disable();
+      this.gameWon = true;
     }
   }
 
@@ -129,6 +131,7 @@ export class AppComponent implements OnInit {
     this.randomCountry = this.countries[random];
     this.guesses = [];
     this.matSnackBar.dismiss();
+    this.form.controls["country"].enable();
   }
 
   private checkArray(array: any, value: string) {
