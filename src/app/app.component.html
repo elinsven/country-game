@@ -17,7 +17,7 @@
         <form [formGroup]="form">
           <mat-form-field>
             <mat-label>Enter country</mat-label>
-            <input matInput type="text" formControlName="country" [matAutocomplete]="auto" #trigger="matAutocompleteTrigger">
+            <input matInput type="text" formControlName="country" [matAutocomplete]="auto" (keydown)="onKeydown()">
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let option of filteredOptions | async" [value]="option.country | uppercase">
                 {{ option.country | uppercase }}
@@ -29,9 +29,10 @@
 
        <!-- Answers -->
        <div  class="guessing-list">
-        <mat-list role="list" *ngFor="let guess of guesses; last as lastGuess" [class.red]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 20000"
-        [class.yellow]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 10000"
-        [class.green]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 3000">
+        <mat-list role="list" *ngFor="let guess of guesses; last as lastGuess" 
+                              [class.red]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 20000"
+                              [class.yellow]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 10000"
+                              [class.green]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 3000">
           <mat-list-item role="listitem">
             <div class="item-row">
               <div class="col">

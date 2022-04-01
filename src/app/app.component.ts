@@ -21,7 +21,7 @@ interface Country {
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  @ViewChild(MatAutocompleteTrigger) trigger: MatAutocompleteTrigger;
+  @ViewChild(MatAutocompleteTrigger) autocomplete: MatAutocompleteTrigger;
 
   countries: Country[];
   randomCountry: Country;
@@ -51,10 +51,17 @@ export class AppComponent implements OnInit {
      this.countries.sort((a, b) => (a.country > b.country) ? 1 : -1);
      const random = Math.floor(Math.random() * this.countries.length);
      this.randomCountry = this.countries[random];
-
+     setTimeout(() => {
+      this.autocomplete.autocompleteDisabled = true;
+     }, 100)
+     
     }, err => {
       console.log(err);
     });
+  }
+
+  onKeydown() {
+    this.autocomplete.autocompleteDisabled = false;
   }
 
   initForm() {
@@ -79,6 +86,7 @@ export class AppComponent implements OnInit {
 
   guessSubmit() {
     this.currentGuess = this.form.get("country")?.value;
+    this.autocomplete.autocompleteDisabled = true;
 
     if (this.currentGuess == null || !this.checkArray(this.countries, this.currentGuess)) {
       this._initMatSnackBar("Unknown country", "", 1000);
