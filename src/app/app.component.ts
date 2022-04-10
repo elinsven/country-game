@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
 
   playAgain(newCountry: Country) {
     this.randomCountry = newCountry;
-    console.log(newCountry);
   }
 }
 
