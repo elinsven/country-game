@@ -1,0 +1,15 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vw;
+    max-width: 450px;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-raised-button {
+    width: 100%;
+}

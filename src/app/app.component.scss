@@ -14,6 +14,10 @@
     }
 }
 
+h1 {
+    text-align: center;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -21,69 +25,8 @@
 }
 
 img {
-    width: 60%;
-    max-width: 450px;
+    width: 55%;
+    max-width: 400px;
     height: auto;
     margin-bottom: 40px;
 }
-
-.form, form {
-    width: 80vw;
-    max-width: 450px;
-}
-
-.mat-form-field {
-    width: 100%;
-}
-
-.mat-raised-button {
-    width: 100%;
-}
-
-.mat-list-base {
-    padding: 0;
-}
-
-.guessing-list {
-    margin: 20px 0;
-    border-radius: 5px;
-
-    .item-row {
-        width: 100%;
-        display: flex;
-        align-items: center;
-    }
-    
-    .col {
-        width: calc(100%/3);
-        text-align: center;
-        flex: 0 0 auto;
-    }
-
-    p {
-        margin: 0;
-    }
-
-    #country-name {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-}
-
-.red {
-    background-color: #ffa0a0;
-}
-
-.yellow {
-    background-color: #fffca0;
-}
-
-.green {
-    background-color: #C4FFA0;
-}
-
-.mat-divider {
-    background-color: black;
-}
-

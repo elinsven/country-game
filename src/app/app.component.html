@@ -1,60 +1,20 @@
 <div class="container">
-  <!-- Loading page -->
+  <!-- LOADING PAGE -->
   <ng-container *ngIf="!randomCountry">
     <div class="loading-screen">
       <mat-spinner></mat-spinner>
-      <p>Loading game...</p>
+      <p>LOADING GAME...</p>
     </div>
-
   </ng-container>
+
   <ng-container *ngIf="randomCountry">
+    <h1>MYSTERY COUNTRY</h1>
     <div class="content">
-      <!-- Country image -->
-      <img [src]="sanitize('data:image/jpg;base64, ' + arrayBufferToBase64(randomCountry.countryimage?.data))"> 
+      <!-- COUNTRY IMAGE -->
+      <img [src]="sanitize('data:image/jpg;base64, ' + arrayBufferToBase64(randomCountry.countryimage?.data))">
 
-      <!-- Guessing form -->
-      <div class="form">
-        <form [formGroup]="form">
-          <mat-form-field>
-            <mat-label>Enter country</mat-label>
-            <input matInput type="text" formControlName="country" [matAutocomplete]="auto" (keydown)="onKeydown()">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.country | uppercase">
-                {{ option.country | uppercase }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-          <button mat-raised-button type="submit" (click)="guessSubmit()" [disabled]="guesses.length == 5 || (currentGuess | lowercase) == (randomCountry.country | lowercase)">Guess</button>
-        </form>
-
-       <!-- Answers -->
-       <div  class="guessing-list">
-        <mat-list role="list" *ngFor="let guess of guesses; last as lastGuess" 
-                              [class.red]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 20000"
-                              [class.yellow]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 10000"
-                              [class.green]="this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) < 3000">
-          <mat-list-item role="listitem">
-            <div class="item-row">
-              <div class="col">
-                <p id="country-name">{{ guess.country | uppercase }}</p>
-              </div>
-              <div class="col">
-                <p *ngIf="!gameWon || !lastGuess">{{ this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1], randomCountry.location[0], randomCountry.location[1]) }}km</p>
-              </div>
-              <div class="col">
-                <mat-icon *ngIf="!gameWon || !lastGuess" [ngStyle]="calculateIconDirection(guess.location[0], guess.location[1])">south</mat-icon>
-              </div> 
-            </div>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-       </div>
-    </div>
-
-      <!-- Play again button -->
-      <div class="play-again-btn" *ngIf="guesses.length === 5 || gameWon">
-        <button mat-raised-button (click)="playAgain()">Play again</button>
-      </div>
+      <!-- GUESSING FORM & LIST -->
+      <app-guessing-form [countries]="countries" [randomCountry]="randomCountry" (playAgain)="playAgain($event)"></app-guessing-form>
     </div>
   </ng-container>
 </div>

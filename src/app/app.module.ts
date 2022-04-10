@@ -14,11 +14,15 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { GuessingFormComponent } from './components/guessing-form/guessing-form.component';
+import { GuessingListComponent } from './components/guessing-list/guessing-list.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GuessingFormComponent,
+    GuessingListComponent
   ],
   imports: [
     BrowserModule,
