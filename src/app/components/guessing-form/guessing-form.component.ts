@@ -41,11 +41,9 @@ export class GuessingFormComponent implements OnInit {
   onSubmitGuess() {
     this.recentGuess =
       this.guessingForm.controls["country"]?.value.toUpperCase();
+    const correctCountry = this.randomCountry.country.toUpperCase();
 
-    if (
-      this.recentGuess == null ||
-      !this._checkArray(this.countries, this.recentGuess)
-    ) {
+    if (!this._checkArray(this.countries, this.recentGuess)) {
       this._initMatSnackBar(
         this.transloco.translate("app.unknownCountry"),
         "",
@@ -67,21 +65,14 @@ export class GuessingFormComponent implements OnInit {
       this.guesses.push(findCountry);
     }
 
-    this._autoCompletion();
-    this.guessingForm.reset();
-
-    const correctCountry = this.randomCountry.country.toUpperCase();
-    if (
-      this.guesses.length === 5 &&
-      this.recentGuess?.toUpperCase() !== correctCountry
-    ) {
+    if (this.guesses.length === 5 && this.recentGuess !== correctCountry) {
       this._initMatSnackBar(
         this.transloco.translate("app.theAnswerWas") + correctCountry,
         this.transloco.translate("app.close"),
         undefined,
       );
       this.guessingForm.controls["country"].disable();
-    } else if (this.recentGuess?.toUpperCase() === correctCountry) {
+    } else if (this.recentGuess === correctCountry) {
       this._initMatSnackBar(
         this.transloco.translate("app.correct"),
         this.transloco.translate("app.close"),
@@ -90,6 +81,8 @@ export class GuessingFormComponent implements OnInit {
       this.guessingForm.controls["country"].disable();
       this.gameStatus = "Won";
     }
+    this._autoCompletion();
+    this.guessingForm.reset();
   }
 
   onPlayAgain() {
