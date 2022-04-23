@@ -1,0 +1,14 @@
+{
+  "app": {
+    "appName": "MYSTERY COUNTRY",
+    "loadingGame": "LOADING GAME...",
+    "enterCountry": "ENTER COUNTRY",
+    "guess": "GUESS",
+    "playAgain": "PLAY AGAIN",
+    "unknownCountry": "UNKNOWN COUNTRY",
+    "countryAlreadyGuessed": "COUNTRY ALREADY GUESSED",
+    "theAnswerWas": "THE ANSWER WAS ",
+    "close": "CLOSE",
+    "correct": "CORRECT"
+  }
+}

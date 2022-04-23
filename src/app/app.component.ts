@@ -5,25 +5,23 @@ import { ApiService, Country } from "./services/api.service";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
   countries: Country[];
   randomCountry: Country;
 
-  constructor(private api: ApiService, 
-    private sanitizer: DomSanitizer) { }
+  constructor(private api: ApiService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.getCountries();
   }
 
   getCountries() {
-    this.api.getCountries().subscribe((res: any) => {   
-     this.countries = res;
-     this.countries.sort((a, b) => (a.country > b.country) ? 1 : -1);
-     const random = Math.floor(Math.random() * this.countries.length);
-     this.randomCountry = this.countries[random];   
+    this.api.getCountries().subscribe((res: any) => {
+      this.countries = res;
+      const random = Math.floor(Math.random() * this.countries.length);
+      this.randomCountry = this.countries[random];
     });
   }
 
@@ -32,12 +30,12 @@ export class AppComponent implements OnInit {
     const bytes = new Uint8Array(buffer);
     const len = bytes.byteLength;
     for (let i = 0; i < len; i++) {
-       binary += String.fromCharCode( bytes[i] );
+      binary += String.fromCharCode(bytes[i]);
     }
     return window.btoa(binary);
   }
 
-  sanitize(url: string ) {
+  sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
@@ -45,5 +43,3 @@ export class AppComponent implements OnInit {
     this.randomCountry = newCountry;
   }
 }
-
-

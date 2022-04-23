@@ -3,18 +3,29 @@
   <ng-container *ngIf="!randomCountry">
     <div class="loading-screen">
       <mat-spinner></mat-spinner>
-      <p>LOADING GAME...</p>
+      <p>{{ "app.loadingGame" | transloco }}</p>
     </div>
   </ng-container>
 
   <ng-container *ngIf="randomCountry">
-    <h1>MYSTERY COUNTRY</h1>
+    <h1>{{ "app.appName" | transloco }}</h1>
     <div class="content">
       <!-- COUNTRY IMAGE -->
-      <img [src]="sanitize('data:image/jpg;base64, ' + arrayBufferToBase64(randomCountry.countryimage?.data))">
+      <img
+        [src]="
+          sanitize(
+            'data:image/jpg;base64, ' +
+              arrayBufferToBase64(randomCountry.countryimage?.data)
+          )
+        "
+      />
 
       <!-- GUESSING FORM & LIST -->
-      <app-guessing-form [countries]="countries" [randomCountry]="randomCountry" (playAgain)="playAgain($event)"></app-guessing-form>
+      <app-guessing-form
+        [countries]="countries"
+        [randomCountry]="randomCountry"
+        (playAgain)="playAgain($event)"
+      ></app-guessing-form>
     </div>
   </ng-container>
 </div>

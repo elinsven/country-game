@@ -1,46 +1,46 @@
 .mat-list-base {
-    padding: 0;
+  padding: 0;
 }
 
 .guessing-list {
-    margin: 20px 0;
-    border-radius: 5px;
+  margin: 20px 0;
+  border-radius: 5px;
 
-    .item-row {
-        width: 100%;
-        display: flex;
-        align-items: center;
-    }
-    
-    .col {
-        width: calc(100%/3);
-        text-align: center;
-        flex: 0 0 auto;
-    }
+  .item-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
 
-    p {
-        margin: 0;
-    }
+  .col {
+    width: calc(100% / 3);
+    text-align: center;
+    flex: 0 0 auto;
+  }
 
-    #country-name {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+  p {
+    margin: 0;
+  }
+
+  #country-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 
 .red {
-    background-color: #ffa0a0;
+  background-color: #ffa0a0;
 }
 
 .yellow {
-    background-color: #fffca0;
+  background-color: #fffca0;
 }
 
 .green {
-    background-color: #C4FFA0;
+  background-color: #c4ffa0;
 }
 
 .mat-divider {
-    background-color: black;
+  background-color: black;
 }
