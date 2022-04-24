@@ -1,0 +1,31 @@
+<!-- LOADING PAGE -->
+<ng-container *ngIf="!randomCountry">
+  <div class="loading-screen">
+    <mat-spinner></mat-spinner>
+    <p>{{ "app.loadingGame" | transloco }}</p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="randomCountry">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="nav-button help">
+      <button id="hidden" mat-icon-button><mat-icon>help</mat-icon></button>
+    </div>
+
+    <h1 routerLink="/">{{ "app.appName" | transloco }}</h1>
+
+    <div class="nav-button">
+      <button mat-icon-button><mat-icon>leaderboard</mat-icon></button>
+      <button mat-icon-button routerLink="/settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div id="content">
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>

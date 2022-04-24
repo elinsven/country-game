@@ -1,0 +1,37 @@
+@import "~@angular/material/theming";
+@import "./material-design-color.scss";
+
+:root {
+  --white: #dfe6e9;
+  --dark-gray: #2d3436;
+}
+
+$app-light-primary: mat-palette($light-theme-primary);
+$app-light-accent: mat-palette($light-theme-accent);
+$app-light-warn: mat-palette($light-theme-warn);
+$app-light-theme: mat-light-theme(
+  $app-light-primary,
+  $app-light-accent,
+  $app-light-warn
+);
+
+.light-theme {
+  color: var(--dark-gray);
+  background-color: var(--white);
+  @include angular-material-theme($app-light-theme);
+}
+
+$app-dark-primary: mat-palette($dark-theme-primary);
+$app-dark-accent: mat-palette($dark-theme-accent);
+$app-dark-warn: mat-palette($dark-theme-warn);
+$app-dark-theme: mat-dark-theme(
+  $app-dark-primary,
+  $app-dark-accent,
+  $app-dark-warn
+);
+
+.dark-theme {
+  color: var(--white);
+  background-color: var(--dark-gray);
+  @include angular-material-theme($app-dark-theme);
+}

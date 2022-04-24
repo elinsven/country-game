@@ -17,12 +17,23 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { GuessingFormComponent } from "./components/guessing-form/guessing-form.component";
-import { GuessingListComponent } from "./components/guessing-list/guessing-list.component";
+import { GuessingFormComponent } from "./components/game-page/guessing-form/guessing-form.component";
 import { TranslocoRootModule } from "./transloco-root.module";
+import { SettingsComponent } from "./components/settings/settings.component";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { GuessingListComponent } from "./components/game-page/guessing-list/guessing-list.component";
+import { AppShellComponent } from "./app-shell/app-shell.component";
+import { GamePageComponent } from "./components/game-page/game-page.component";
 
 @NgModule({
-  declarations: [AppComponent, GuessingFormComponent, GuessingListComponent],
+  declarations: [
+    AppComponent,
+    GuessingFormComponent,
+    GuessingListComponent,
+    SettingsComponent,
+    AppShellComponent,
+    GamePageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,6 +47,7 @@ import { TranslocoRootModule } from "./transloco-root.module";
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatSlideToggleModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,

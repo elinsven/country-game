@@ -16,16 +16,28 @@ export interface Country {
   providedIn: "root",
 })
 export class ApiService {
-  baseUrl: string = environment.baseUrl;
-  apiUrl: string = this.baseUrl + "/getCountries";
+  private baseUrl: string = environment.baseUrl;
+  private apiUrl: string = this.baseUrl + "/getCountries";
+  private gameData: Object;
 
   constructor(private http: HttpClient) {}
 
-  getCountries() {
+  public getCountries() {
     return this.http.get(this.apiUrl).pipe(
       map((data) => {
         return data;
       }),
     );
+  }
+
+  public setGameData(countries: Country[], randomCountry: Country) {
+    this.gameData = {
+      countries: countries,
+      randomCountry: randomCountry,
+    };
+  }
+
+  public getGameData(): Object {
+    return this.gameData;
   }
 }

@@ -1,7 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "./assets/theme/app-theme.scss";
 
-body { 
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+html,
+body {
+  min-height: 100% !important;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--dark-gray);
+  background-color: var(--white);
+  @include angular-material-theme($app-light-theme);
+}
+
+body.dark-theme {
+  color: var(--white);
+  background-color: var(--dark-gray);
+  @include angular-material-theme($app-dark-theme);
 }
