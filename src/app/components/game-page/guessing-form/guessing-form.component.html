@@ -21,6 +21,7 @@
     </mat-form-field>
     <button
       mat-raised-button
+      color="primary"
       type="submit"
       (click)="onSubmitGuess()"
       [disabled]="
@@ -45,7 +46,7 @@
   class="play-again-btn"
   *ngIf="guesses?.length === 5 || gameStatus === 'Won'"
 >
-  <button mat-raised-button (click)="onPlayAgain()">
+  <button mat-raised-button color="primary" (click)="onPlayAgain()">
     {{ "app.playAgain" | transloco }}
   </button>
 </div>
