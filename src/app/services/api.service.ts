@@ -18,7 +18,6 @@ export interface Country {
 export class ApiService {
   private baseUrl: string = environment.baseUrl;
   private apiUrl: string = this.baseUrl + "/getCountries";
-  private gameData: Object;
 
   constructor(private http: HttpClient) {}
 
@@ -28,16 +27,5 @@ export class ApiService {
         return data;
       }),
     );
-  }
-
-  public setGameData(countries: Country[], randomCountry: Country) {
-    this.gameData = {
-      countries: countries,
-      randomCountry: randomCountry,
-    };
-  }
-
-  public getGameData(): Object {
-    return this.gameData;
   }
 }
