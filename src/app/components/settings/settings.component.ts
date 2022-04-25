@@ -16,5 +16,6 @@ export class SettingsComponent implements OnInit {
     event.checked
       ? document.body.classList.add(theme)
       : document.body.classList.remove(theme);
+    localStorage.setItem("DARK_MODE", "TRUE");
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ApiService, Country } from "src/app/services/api.service";
+import { DataService } from "src/app/services/data.service";
 
 @Component({
   selector: "app-game-page",
@@ -11,10 +12,13 @@ export class GamePageComponent implements OnInit {
   countries: Country[];
   randomCountry: Country;
 
-  constructor(private api: ApiService, private sanitizer: DomSanitizer) {}
+  constructor(
+    private dataService: DataService,
+    private sanitizer: DomSanitizer,
+  ) {}
 
   ngOnInit(): void {
-    let data: any = this.api.getGameData();
+    let data: any = this.dataService.getGameData();
     this.countries = data.countries;
     this.randomCountry = data.randomCountry;
   }
