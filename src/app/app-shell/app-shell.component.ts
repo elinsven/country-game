@@ -14,15 +14,18 @@ export class AppShellComponent implements OnInit {
   constructor(private api: ApiService, private dataService: DataService) {}
 
   ngOnInit(): void {
+    const theme = "dark-theme";
+    const darkMode = localStorage.getItem("DARK_MODE");
+    if (darkMode === "TRUE") {
+      document.body.classList.add(theme);
+    }
     this.getCountries();
   }
 
   getCountries() {
     this.api.getCountries().subscribe((res: any) => {
       this.countries = res;
-      const random = Math.floor(Math.random() * this.countries.length);
-      this.randomCountry = this.countries[random];
-      this.dataService.setGameData(this.countries, this.randomCountry);
+      this.dataService.setCountries(this.countries);
     });
   }
 }

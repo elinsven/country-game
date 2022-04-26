@@ -24,6 +24,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { GuessingListComponent } from "./components/game-page/guessing-list/guessing-list.component";
 import { AppShellComponent } from "./app-shell/app-shell.component";
 import { GamePageComponent } from "./components/game-page/game-page.component";
+import { LeaderboardComponent } from "./components/leaderboard/leaderboard.component";
+import { HowToPlayComponent } from "./components/how-to-play/how-to-play.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { GamePageComponent } from "./components/game-page/game-page.component";
     SettingsComponent,
     AppShellComponent,
     GamePageComponent,
+    LeaderboardComponent,
+    HowToPlayComponent,
   ],
   imports: [
     BrowserModule,

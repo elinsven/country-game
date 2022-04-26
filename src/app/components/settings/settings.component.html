@@ -1,7 +1,10 @@
 <div class="content">
-  <h3>Settings</h3>
-  <strong>Settings under construction</strong>
-  <mat-slide-toggle color="primary" (change)="toggleDarkMode($event)"
+  <h2>SETTINGS</h2>
+  <strong>SETTINGS UNDER CONSTRUCTION</strong>
+  <mat-slide-toggle
+    color="primary"
+    (change)="toggleDarkMode($event)"
+    [checked]="darkMode"
     >Dark mode</mat-slide-toggle
   >
 </div>

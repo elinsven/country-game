@@ -4,6 +4,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslocoService } from "@ngneat/transloco";
 import { map, Observable, startWith } from "rxjs";
 import { Country } from "src/app/services/api.service";
+import { DataService } from "src/app/services/data.service";
 
 @Component({
   selector: "app-guessing-form",
@@ -19,28 +20,32 @@ export class GuessingFormComponent implements OnInit {
   inputData: string;
   filteredOptions: Observable<Country[]>;
   recentGuess: string;
-  guesses: any[] = [];
+  guesses: any;
   gameStatus: "Won" | "InProgress" = "InProgress";
 
   constructor(
     private matSnackBar: MatSnackBar,
     private transloco: TranslocoService,
+    private dataService: DataService,
   ) {}
 
   ngOnInit(): void {
+    this.guesses = this.dataService.getGuesses();
     this.initForm();
     this._autoCompletion();
   }
 
   initForm() {
     this.guessingForm = new FormGroup({
-      country: new FormControl(""),
+      country: new FormControl(null),
     });
   }
 
   onSubmitGuess() {
-    this.recentGuess =
-      this.guessingForm.controls["country"]?.value.toUpperCase();
+    if (this.guessingForm.controls["country"]?.value !== null) {
+      this.recentGuess =
+        this.guessingForm.controls["country"]?.value.toUpperCase();
+    }
     const correctCountry = this.randomCountry.country.toUpperCase();
 
     if (!this._checkArray(this.countries, this.recentGuess)) {
@@ -62,7 +67,7 @@ export class GuessingFormComponent implements OnInit {
       const findCountry = this.countries.find((guess: Country) =>
         guess.country.toUpperCase().match(regexCurrentGuess),
       );
-      this.guesses.push(findCountry);
+      this.dataService.setGuesses(findCountry);
     }
 
     if (this.guesses.length === 5 && this.recentGuess !== correctCountry) {
@@ -82,6 +87,7 @@ export class GuessingFormComponent implements OnInit {
       this.gameStatus = "Won";
     }
     this._autoCompletion();
+    this.guesses = this.dataService.getGuesses();
     this.guessingForm.reset();
   }
 
@@ -89,7 +95,7 @@ export class GuessingFormComponent implements OnInit {
     const random = Math.floor(Math.random() * this.countries.length);
     this.randomCountry = this.countries[random];
     this.playAgain.emit(this.randomCountry);
-    this.guesses = [];
+    this.guesses = this.dataService.clearGuesses();
     this.matSnackBar.dismiss();
     this.guessingForm.controls["country"].enable();
     this.gameStatus = "InProgress";

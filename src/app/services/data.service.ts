@@ -1,27 +1,32 @@
 import { Injectable } from "@angular/core";
 import { Country } from "./api.service";
 
-export interface GameData {
-  countries: Country[];
-  randomCountry: Country;
-}
-
 @Injectable({
   providedIn: "root",
 })
 export class DataService {
-  private gameData: GameData;
+  private countries: Country[];
+  private guesses: any[] = [];
 
   constructor() {}
 
-  public setGameData(countries: Country[], randomCountry: Country) {
-    this.gameData = {
-      countries: countries,
-      randomCountry: randomCountry,
-    };
+  public setCountries(countries: Country[]) {
+    this.countries = countries;
   }
 
-  public getGameData(): Object {
-    return this.gameData;
+  public getCountries(): Object {
+    return this.countries;
+  }
+
+  public setGuesses(guess: any) {
+    this.guesses.push(guess);
+  }
+
+  public clearGuesses() {
+    return (this.guesses = []);
+  }
+
+  public getGuesses(): Object {
+    return this.guesses;
   }
 }
