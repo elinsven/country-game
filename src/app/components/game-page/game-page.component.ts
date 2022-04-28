@@ -9,18 +9,29 @@ import { DataService } from "src/app/services/data.service";
   styleUrls: ["./game-page.component.scss"],
 })
 export class GamePageComponent implements OnInit {
-  countries: any;
+  countries: Country[];
   randomCountry: Country;
 
   constructor(
     private dataService: DataService,
     private sanitizer: DomSanitizer,
-  ) {}
+  ) {
+    this.countries = this.dataService.getCountries();
+  }
 
   ngOnInit(): void {
-    this.countries = this.dataService.getCountries();
+    const getRandomCountry = JSON.parse(
+      localStorage.getItem("RANDOM_COUNTRY") as string,
+    );
+    getRandomCountry
+      ? (this.randomCountry = getRandomCountry)
+      : this.setRandomCountry();
+  }
+
+  setRandomCountry() {
     const random = Math.floor(Math.random() * this.countries.length);
     this.randomCountry = this.countries[random];
+    localStorage.setItem("RANDOM_COUNTRY", JSON.stringify(this.randomCountry));
   }
 
   arrayBufferToBase64(buffer: any) {

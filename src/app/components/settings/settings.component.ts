@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { Theme } from "src/app/app-shell/app-shell.component";
 
 @Component({
   selector: "app-settings",
@@ -7,22 +8,26 @@ import { MatSlideToggleChange } from "@angular/material/slide-toggle";
   styleUrls: ["./settings.component.scss"],
 })
 export class SettingsComponent implements OnInit {
-  darkMode: string | null;
+  darkTheme: string | null;
+  get theme(): typeof Theme {
+    return Theme;
+  }
 
   constructor() {}
 
   ngOnInit(): void {
-    this.darkMode = localStorage.getItem("DARK_MODE");
+    this.darkTheme = localStorage.getItem("THEME");
   }
 
   toggleDarkMode(event: MatSlideToggleChange) {
-    const theme = "dark-theme";
-    if (event.checked) {
-      document.body.classList.add(theme);
-      localStorage.setItem("DARK_MODE", "TRUE");
-    } else {
-      document.body.classList.remove(theme);
-      localStorage.removeItem("DARK_MODE");
-    }
+    event.checked
+      ? this.setTheme(Theme.DARK_THEME, "dark-theme", "light-theme")
+      : this.setTheme(Theme.LIGHT_THEME, "light-theme", "dark-theme");
+  }
+
+  setTheme(value: Theme, addTheme: string, removeTheme: string) {
+    localStorage.setItem("THEME", value);
+    document.body.classList.add(addTheme);
+    document.body.classList.remove(removeTheme);
   }
 }

@@ -67,6 +67,7 @@ export class GuessingFormComponent implements OnInit {
       const findCountry = this.countries.find((guess: Country) =>
         guess.country.toUpperCase().match(regexCurrentGuess),
       );
+      //localStorage.setItem("GUESSES", JSON.stringify(this.guessesTest));
       this.dataService.setGuesses(findCountry);
     }
 
@@ -87,18 +88,25 @@ export class GuessingFormComponent implements OnInit {
       this.gameStatus = "Won";
     }
     this._autoCompletion();
+    //this.guessesTest = JSON.parse(localStorage.getItem("GUESSES") as any);
     this.guesses = this.dataService.getGuesses();
     this.guessingForm.reset();
   }
 
   onPlayAgain() {
-    const random = Math.floor(Math.random() * this.countries.length);
-    this.randomCountry = this.countries[random];
-    this.playAgain.emit(this.randomCountry);
+    this.setRandomCountry();
     this.guesses = this.dataService.clearGuesses();
+    localStorage.removeItem("GUESSES");
     this.matSnackBar.dismiss();
     this.guessingForm.controls["country"].enable();
     this.gameStatus = "InProgress";
+  }
+
+  setRandomCountry() {
+    const random = Math.floor(Math.random() * this.countries.length);
+    this.randomCountry = this.countries[random];
+    localStorage.setItem("RANDOM_COUNTRY", JSON.stringify(this.randomCountry));
+    this.playAgain.emit(this.randomCountry);
   }
 
   private _autoCompletion() {

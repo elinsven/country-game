@@ -15,7 +15,7 @@ $app-light-theme: mat-light-theme(
   $app-light-warn
 );
 
-.light-theme {
+body.light-theme {
   color: var(--dark-gray);
   background-color: var(--white);
   @include angular-material-theme($app-light-theme);
@@ -30,7 +30,7 @@ $app-dark-theme: mat-dark-theme(
   $app-dark-warn
 );
 
-.dark-theme {
+body.dark-theme {
   color: var(--white);
   background-color: var(--dark-gray);
   @include angular-material-theme($app-dark-theme);

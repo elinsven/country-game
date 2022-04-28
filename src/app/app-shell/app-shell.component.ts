@@ -2,6 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { ApiService, Country } from "../services/api.service";
 import { DataService } from "../services/data.service";
 
+export enum Theme {
+  LIGHT_THEME = "LIGHT_THEME",
+  DARK_THEME = "DARK_THEME",
+}
+
 @Component({
   selector: "app-app-shell",
   templateUrl: "./app-shell.component.html",
@@ -14,12 +19,8 @@ export class AppShellComponent implements OnInit {
   constructor(private api: ApiService, private dataService: DataService) {}
 
   ngOnInit(): void {
-    const theme = "dark-theme";
-    const darkMode = localStorage.getItem("DARK_MODE");
-    if (darkMode === "TRUE") {
-      document.body.classList.add(theme);
-    }
     this.getCountries();
+    this.getTheme();
   }
 
   getCountries() {
@@ -27,5 +28,24 @@ export class AppShellComponent implements OnInit {
       this.countries = res;
       this.dataService.setCountries(this.countries);
     });
+  }
+
+  getTheme() {
+    const theme = localStorage.getItem("THEME");
+    switch (theme) {
+      case Theme.LIGHT_THEME:
+        this.setTheme(Theme.LIGHT_THEME, "light-theme");
+        break;
+      case Theme.DARK_THEME:
+        this.setTheme(Theme.DARK_THEME, "dark-theme");
+        break;
+      default:
+        this.setTheme(Theme.LIGHT_THEME, "light-theme");
+    }
+  }
+
+  setTheme(value: Theme, addTheme: string) {
+    localStorage.setItem("THEME", value);
+    document.body.classList.add(addTheme);
   }
 }

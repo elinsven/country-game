@@ -14,7 +14,7 @@ export class DataService {
     this.countries = countries;
   }
 
-  public getCountries(): Object {
+  public getCountries(): Country[] {
     return this.countries;
   }
 
