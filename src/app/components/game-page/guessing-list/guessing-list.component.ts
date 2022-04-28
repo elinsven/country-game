@@ -7,7 +7,7 @@ import { Country } from "src/app/services/api.service";
   styleUrls: ["./guessing-list.component.scss"],
 })
 export class GuessingListComponent implements OnInit {
-  @Input() gameStatus: "Won" | "InProgress";
+  @Input() gameStatus: "won" | "lost" | "inProgress";
   @Input() guesses: Country[];
   @Input() randomCountry: Country;
 

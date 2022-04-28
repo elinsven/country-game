@@ -44,7 +44,7 @@
 <!-- PLAY AGAIN BUTTON -->
 <div
   class="play-again-btn"
-  *ngIf="guesses?.length === 5 || gameStatus === 'Won'"
+  *ngIf="guesses?.length === 5 || gameStatus === 'won'"
 >
   <button mat-raised-button color="primary" (click)="onPlayAgain()">
     {{ "app.playAgain" | transloco }}

@@ -1,17 +1,23 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslocoService } from "@ngneat/transloco";
 import { map, Observable, startWith } from "rxjs";
 import { Country } from "src/app/services/api.service";
-import { DataService } from "src/app/services/data.service";
 
 @Component({
   selector: "app-guessing-form",
   templateUrl: "./guessing-form.component.html",
   styleUrls: ["./guessing-form.component.scss"],
 })
-export class GuessingFormComponent implements OnInit {
+export class GuessingFormComponent implements OnInit, OnDestroy {
   @Input() countries: Country[];
   @Input() randomCountry: Country;
   @Output() playAgain: EventEmitter<Country> = new EventEmitter<Country>();
@@ -20,19 +26,21 @@ export class GuessingFormComponent implements OnInit {
   inputData: string;
   filteredOptions: Observable<Country[]>;
   recentGuess: string;
-  guesses: any;
-  gameStatus: "Won" | "InProgress" = "InProgress";
+  guesses: any[] = [];
+  gameStatus: "won" | "lost" | "inProgress" = "inProgress";
 
   constructor(
     private matSnackBar: MatSnackBar,
     private transloco: TranslocoService,
-    private dataService: DataService,
   ) {}
 
   ngOnInit(): void {
-    this.guesses = this.dataService.getGuesses();
+    const getGuesses = JSON.parse(localStorage.getItem("GUESSES") as string);
+    getGuesses ? (this.guesses = getGuesses) : (this.guesses = []);
     this.initForm();
     this._autoCompletion();
+
+    window.onbeforeunload = () => this.ngOnDestroy();
   }
 
   initForm() {
@@ -67,8 +75,8 @@ export class GuessingFormComponent implements OnInit {
       const findCountry = this.countries.find((guess: Country) =>
         guess.country.toUpperCase().match(regexCurrentGuess),
       );
-      //localStorage.setItem("GUESSES", JSON.stringify(this.guessesTest));
-      this.dataService.setGuesses(findCountry);
+      this.guesses.push(findCountry);
+      localStorage.setItem("GUESSES", JSON.stringify(this.guesses));
     }
 
     if (this.guesses.length === 5 && this.recentGuess !== correctCountry) {
@@ -78,6 +86,7 @@ export class GuessingFormComponent implements OnInit {
         undefined,
       );
       this.guessingForm.controls["country"].disable();
+      this.gameStatus = "lost";
     } else if (this.recentGuess === correctCountry) {
       this._initMatSnackBar(
         this.transloco.translate("app.correct"),
@@ -85,21 +94,24 @@ export class GuessingFormComponent implements OnInit {
         undefined,
       );
       this.guessingForm.controls["country"].disable();
-      this.gameStatus = "Won";
+      this.gameStatus = "won";
     }
     this._autoCompletion();
-    //this.guessesTest = JSON.parse(localStorage.getItem("GUESSES") as any);
-    this.guesses = this.dataService.getGuesses();
+    this.guesses = JSON.parse(localStorage.getItem("GUESSES") as string);
     this.guessingForm.reset();
   }
 
   onPlayAgain() {
     this.setRandomCountry();
-    this.guesses = this.dataService.clearGuesses();
-    localStorage.removeItem("GUESSES");
+    this.resetGuesses();
     this.matSnackBar.dismiss();
     this.guessingForm.controls["country"].enable();
-    this.gameStatus = "InProgress";
+    this.gameStatus = "inProgress";
+  }
+
+  resetGuesses() {
+    localStorage.removeItem("GUESSES");
+    this.guesses = [];
   }
 
   setRandomCountry() {
@@ -139,5 +151,15 @@ export class GuessingFormComponent implements OnInit {
     return this.countries.filter(
       (option: any) => option.country.toLowerCase().indexOf(filterValue) === 0,
     );
+  }
+
+  ngOnDestroy(): void {
+    if (this.gameStatus === "won") {
+      this.setRandomCountry();
+      this.resetGuesses();
+    } else if (this.gameStatus === "lost") {
+      this.setRandomCountry();
+      this.resetGuesses();
+    }
   }
 }

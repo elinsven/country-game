@@ -6,7 +6,6 @@ import { Country } from "./api.service";
 })
 export class DataService {
   private countries: Country[];
-  private guesses: any[] = [];
 
   constructor() {}
 
@@ -16,17 +15,5 @@ export class DataService {
 
   public getCountries(): Country[] {
     return this.countries;
-  }
-
-  public setGuesses(guess: any) {
-    this.guesses.push(guess);
-  }
-
-  public clearGuesses() {
-    return (this.guesses = []);
-  }
-
-  public getGuesses(): Object {
-    return this.guesses;
   }
 }
