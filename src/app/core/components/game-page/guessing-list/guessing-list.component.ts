@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Country } from "src/app/services/api.service";
+import { Country, GameStatus } from "src/app/shared/models/models";
 
 @Component({
   selector: "app-guessing-list",
@@ -7,9 +7,12 @@ import { Country } from "src/app/services/api.service";
   styleUrls: ["./guessing-list.component.scss"],
 })
 export class GuessingListComponent implements OnInit {
-  @Input() gameStatus: "won" | "lost" | "inProgress";
+  @Input() gameStatus: GameStatus;
   @Input() guesses: Country[];
   @Input() randomCountry: Country;
+  get status(): typeof GameStatus {
+    return GameStatus;
+  }
 
   constructor() {}
 
@@ -45,15 +48,15 @@ export class GuessingListComponent implements OnInit {
     return { transform: `rotate(${degree}deg)` };
   }
 
-  private _toRadians(deg: number) {
+  _toRadians(deg: number) {
     return deg * (Math.PI / 180);
   }
 
-  private _toDegree(deg: number) {
+  _toDegree(deg: number) {
     return deg * (180 / Math.PI);
   }
 
-  private _calculateBearing(
+  _calculateBearing(
     startLat: number,
     startLng: number,
     destLat: number,

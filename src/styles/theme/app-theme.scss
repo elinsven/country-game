@@ -3,7 +3,7 @@
 
 :root {
   --white: #dfe6e9;
-  --dark-gray: #2d3436;
+  --dark-grey: #2d3436;
 }
 
 $app-light-primary: mat-palette($light-theme-primary);
@@ -16,7 +16,7 @@ $app-light-theme: mat-light-theme(
 );
 
 body.light-theme {
-  color: var(--dark-gray);
+  color: var(--dark-grey);
   background-color: var(--white);
   @include angular-material-theme($app-light-theme);
 }
@@ -32,6 +32,6 @@ $app-dark-theme: mat-dark-theme(
 
 body.dark-theme {
   color: var(--white);
-  background-color: var(--dark-gray);
+  background-color: var(--dark-grey);
   @include angular-material-theme($app-dark-theme);
 }

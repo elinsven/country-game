@@ -10,7 +10,8 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { TranslocoService } from "@ngneat/transloco";
 import { map, Observable, startWith } from "rxjs";
-import { Country } from "src/app/services/api.service";
+import { CommonService } from "src/app/core/services/common.service";
+import { Country, GameStatus } from "src/app/shared/models/models";
 
 @Component({
   selector: "app-guessing-form",
@@ -26,19 +27,25 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
   inputData: string;
   filteredOptions: Observable<Country[]>;
   recentGuess: string;
-  guesses: any[] = [];
-  gameStatus: "won" | "lost" | "inProgress" = "inProgress";
+  guesses: Country[] = [];
+  gameStatus: GameStatus = GameStatus.IN_PROGRESS;
+  get status(): typeof GameStatus {
+    return GameStatus;
+  }
 
   constructor(
     private matSnackBar: MatSnackBar,
     private transloco: TranslocoService,
-  ) {}
-
-  ngOnInit(): void {
+    private commonService: CommonService,
+  ) {
     const getGuesses = JSON.parse(localStorage.getItem("GUESSES") as string);
     getGuesses ? (this.guesses = getGuesses) : (this.guesses = []);
+  }
+
+  ngOnInit(): void {
     this.initForm();
     this._autoCompletion();
+    this.decryptCountry();
 
     window.onbeforeunload = () => this.ngOnDestroy();
   }
@@ -50,10 +57,8 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmitGuess() {
-    if (this.guessingForm.controls["country"]?.value !== null) {
-      this.recentGuess =
-        this.guessingForm.controls["country"]?.value.toUpperCase();
-    }
+    this.recentGuess =
+      this.guessingForm.controls["country"]?.value.toUpperCase();
     const correctCountry = this.randomCountry.country.toUpperCase();
 
     if (!this._checkArray(this.countries, this.recentGuess)) {
@@ -75,26 +80,14 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
       const findCountry = this.countries.find((guess: Country) =>
         guess.country.toUpperCase().match(regexCurrentGuess),
       );
-      this.guesses.push(findCountry);
+      this.guesses.push(findCountry as Country);
       localStorage.setItem("GUESSES", JSON.stringify(this.guesses));
     }
 
     if (this.guesses.length === 5 && this.recentGuess !== correctCountry) {
-      this._initMatSnackBar(
-        this.transloco.translate("app.theAnswerWas") + correctCountry,
-        this.transloco.translate("app.close"),
-        undefined,
-      );
-      this.guessingForm.controls["country"].disable();
-      this.gameStatus = "lost";
+      this.gameEnd("app.theAnswerWas", GameStatus.LOST, correctCountry); //Fixa
     } else if (this.recentGuess === correctCountry) {
-      this._initMatSnackBar(
-        this.transloco.translate("app.correct"),
-        this.transloco.translate("app.close"),
-        undefined,
-      );
-      this.guessingForm.controls["country"].disable();
-      this.gameStatus = "won";
+      this.gameEnd("app.correct", GameStatus.WON);
     }
     this._autoCompletion();
     this.guesses = JSON.parse(localStorage.getItem("GUESSES") as string);
@@ -102,11 +95,30 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
   }
 
   onPlayAgain() {
-    this.setRandomCountry();
+    this.randomCountry = this.commonService.setRandomCountry(
+      this.randomCountry,
+    );
+    this.playAgain.emit(this.randomCountry);
     this.resetGuesses();
     this.matSnackBar.dismiss();
     this.guessingForm.controls["country"].enable();
-    this.gameStatus = "inProgress";
+    this.guessingForm.reset();
+    this.gameStatus = GameStatus.IN_PROGRESS;
+    this.decryptCountry();
+  }
+
+  gameEnd(
+    notificationMessage: string,
+    gameStatus: GameStatus,
+    correctCountry?: string,
+  ) {
+    this._initMatSnackBar(
+      this.transloco.translate(notificationMessage) + correctCountry,
+      this.transloco.translate("app.close"),
+      undefined,
+    );
+    this.guessingForm.controls["country"].disable();
+    this.gameStatus = gameStatus;
   }
 
   resetGuesses() {
@@ -114,14 +126,14 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
     this.guesses = [];
   }
 
-  setRandomCountry() {
-    const random = Math.floor(Math.random() * this.countries.length);
-    this.randomCountry = this.countries[random];
-    localStorage.setItem("RANDOM_COUNTRY", JSON.stringify(this.randomCountry));
-    this.playAgain.emit(this.randomCountry);
+  decryptCountry() {
+    const decryptCountry = this.commonService.decrypt(
+      this.randomCountry?.country,
+    );
+    this.randomCountry.country = decryptCountry;
   }
 
-  private _autoCompletion() {
+  _autoCompletion() {
     this.filteredOptions = this.guessingForm.controls[
       "country"
     ].valueChanges.pipe(
@@ -130,12 +142,14 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
     );
   }
 
-  private _checkArray(array: any, value: string) {
+  _checkArray(array: Country[], value: string) {
     const regex = new RegExp("(^|s)" + value + "(s|$)");
-    return array.some((guess: any) => guess.country.toUpperCase().match(regex));
+    return array.some((guess: Country) =>
+      guess.country.toUpperCase().match(regex),
+    );
   }
 
-  private _initMatSnackBar(
+  _initMatSnackBar(
     message: string,
     closeButton: string,
     duration: number | undefined,
@@ -146,19 +160,20 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  private _filter(value: string): Country[] {
+  _filter(value: string): Country[] {
     const filterValue = value?.toLowerCase();
     return this.countries.filter(
-      (option: any) => option.country.toLowerCase().indexOf(filterValue) === 0,
+      (option: Country) =>
+        option.country.toLowerCase().indexOf(filterValue) === 0,
     );
   }
 
   ngOnDestroy(): void {
-    if (this.gameStatus === "won") {
-      this.setRandomCountry();
-      this.resetGuesses();
-    } else if (this.gameStatus === "lost") {
-      this.setRandomCountry();
+    if (
+      this.gameStatus === GameStatus.WON ||
+      this.gameStatus === GameStatus.LOST
+    ) {
+      this.commonService.setRandomCountry(this.randomCountry);
       this.resetGuesses();
     }
   }

@@ -1,11 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiService, Country } from "../services/api.service";
-import { DataService } from "../services/data.service";
-
-export enum Theme {
-  LIGHT_THEME = "LIGHT_THEME",
-  DARK_THEME = "DARK_THEME",
-}
+import { ApiService } from "../../../core/services/api.service";
+import { CommonService } from "../../../core/services/common.service";
+import { Country, Theme } from "../../models/models";
 
 @Component({
   selector: "app-app-shell",
@@ -16,7 +12,7 @@ export class AppShellComponent implements OnInit {
   countries: Country[];
   randomCountry: Country;
 
-  constructor(private api: ApiService, private dataService: DataService) {}
+  constructor(private api: ApiService, private commonService: CommonService) {}
 
   ngOnInit(): void {
     this.getCountries();
@@ -26,7 +22,7 @@ export class AppShellComponent implements OnInit {
   getCountries() {
     this.api.getCountries().subscribe((res: any) => {
       this.countries = res;
-      this.dataService.setCountries(this.countries);
+      this.commonService.setCountries(this.countries);
     });
   }
 

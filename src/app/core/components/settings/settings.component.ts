@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
-import { Theme } from "src/app/app-shell/app-shell.component";
+import { Theme } from "src/app/shared/models/models";
 
 @Component({
   selector: "app-settings",

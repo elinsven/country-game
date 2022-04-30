@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Country } from "src/app/services/api.service";
-import { DataService } from "src/app/services/data.service";
+import { CommonService } from "src/app/core/services/common.service";
+import { Country } from "src/app/shared/models/models";
 
 @Component({
   selector: "app-game-page",
@@ -13,10 +13,10 @@ export class GamePageComponent implements OnInit {
   randomCountry: Country;
 
   constructor(
-    private dataService: DataService,
+    private commonService: CommonService,
     private sanitizer: DomSanitizer,
   ) {
-    this.countries = this.dataService.getCountries();
+    this.countries = this.commonService.getCountries();
   }
 
   ngOnInit(): void {
@@ -25,13 +25,9 @@ export class GamePageComponent implements OnInit {
     );
     getRandomCountry
       ? (this.randomCountry = getRandomCountry)
-      : this.setRandomCountry();
-  }
-
-  setRandomCountry() {
-    const random = Math.floor(Math.random() * this.countries.length);
-    this.randomCountry = this.countries[random];
-    localStorage.setItem("RANDOM_COUNTRY", JSON.stringify(this.randomCountry));
+      : (this.randomCountry = this.commonService.setRandomCountry(
+          this.randomCountry,
+        ));
   }
 
   arrayBufferToBase64(buffer: any) {

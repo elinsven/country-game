@@ -17,15 +17,15 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { GuessingFormComponent } from "./components/game-page/guessing-form/guessing-form.component";
+import { GuessingFormComponent } from "./core/components/game-page/guessing-form/guessing-form.component";
 import { TranslocoRootModule } from "./transloco-root.module";
-import { SettingsComponent } from "./components/settings/settings.component";
+import { SettingsComponent } from "./core/components/settings/settings.component";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { GuessingListComponent } from "./components/game-page/guessing-list/guessing-list.component";
-import { AppShellComponent } from "./app-shell/app-shell.component";
-import { GamePageComponent } from "./components/game-page/game-page.component";
-import { LeaderboardComponent } from "./components/leaderboard/leaderboard.component";
-import { HowToPlayComponent } from "./components/how-to-play/how-to-play.component";
+import { GuessingListComponent } from "./core/components/game-page/guessing-list/guessing-list.component";
+import { AppShellComponent } from "./shared/components/app-shell/app-shell.component";
+import { GamePageComponent } from "./core/components/game-page/game-page.component";
+import { LeaderboardComponent } from "./core/components/leaderboard/leaderboard.component";
+import { HowToPlayComponent } from "./core/components/how-to-play/how-to-play.component";
 
 @NgModule({
   declarations: [

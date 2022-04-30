@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AppShellComponent } from "./app-shell/app-shell.component";
-import { GamePageComponent } from "./components/game-page/game-page.component";
-import { HowToPlayComponent } from "./components/how-to-play/how-to-play.component";
-import { LeaderboardComponent } from "./components/leaderboard/leaderboard.component";
-import { SettingsComponent } from "./components/settings/settings.component";
+import { AppShellComponent } from "./shared/components/app-shell/app-shell.component";
+import { GamePageComponent } from "./core/components/game-page/game-page.component";
+import { HowToPlayComponent } from "./core/components/how-to-play/how-to-play.component";
+import { LeaderboardComponent } from "./core/components/leaderboard/leaderboard.component";
+import { SettingsComponent } from "./core/components/settings/settings.component";
 
 const routes: Routes = [
   {
