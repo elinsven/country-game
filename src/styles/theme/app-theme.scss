@@ -19,6 +19,11 @@ body.light-theme {
   color: var(--dark-grey);
   background-color: var(--white);
   @include angular-material-theme($app-light-theme);
+
+  img {
+    filter: invert(15%) sepia(2%) saturate(2908%) hue-rotate(147deg)
+      brightness(100%) contrast(85%);
+  }
 }
 
 $app-dark-primary: mat-palette($dark-theme-primary);
@@ -34,4 +39,9 @@ body.dark-theme {
   color: var(--white);
   background-color: var(--dark-grey);
   @include angular-material-theme($app-dark-theme);
+
+  img {
+    filter: invert(94%) sepia(6%) saturate(172%) hue-rotate(153deg)
+      brightness(101%) contrast(87%);
+  }
 }

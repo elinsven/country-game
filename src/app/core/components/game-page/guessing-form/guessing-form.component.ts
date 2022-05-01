@@ -85,9 +85,9 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
     }
 
     if (this.guesses.length === 5 && this.recentGuess !== correctCountry) {
-      this.gameEnd("app.theAnswerWas", GameStatus.LOST, correctCountry); //Fixa
+      this.gameEnd("app.theAnswerWas", GameStatus.LOST, correctCountry);
     } else if (this.recentGuess === correctCountry) {
-      this.gameEnd("app.correct", GameStatus.WON);
+      this.gameEnd("app.correct", GameStatus.WON, "");
     }
     this._autoCompletion();
     this.guesses = JSON.parse(localStorage.getItem("GUESSES") as string);
