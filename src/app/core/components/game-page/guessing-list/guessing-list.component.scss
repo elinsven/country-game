@@ -1,5 +1,6 @@
 .mat-list-base {
   padding: 0;
+  margin: 5px 0;
 }
 
 .guessing-list {
@@ -41,6 +42,7 @@
   background-color: #c4ffa0;
 }
 
-.mat-divider {
-  background-color: black;
+p,
+.mat-icon {
+  color: var(--dark-grey) !important;
 }

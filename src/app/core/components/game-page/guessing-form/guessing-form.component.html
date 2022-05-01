@@ -1,5 +1,5 @@
 <!-- GUESSING FORM -->
-<div class="form">
+<div class="wrapper">
   <form [formGroup]="guessingForm">
     <mat-form-field>
       <mat-label>{{ "app.enterCountry" | transloco }}</mat-label>
@@ -21,6 +21,7 @@
     </mat-form-field>
     <button
       mat-raised-button
+      color="primary"
       type="submit"
       (click)="onSubmitGuess()"
       [disabled]="
@@ -43,9 +44,9 @@
 <!-- PLAY AGAIN BUTTON -->
 <div
   class="play-again-btn"
-  *ngIf="guesses?.length === 5 || gameStatus === 'Won'"
+  *ngIf="guesses?.length === 5 || gameStatus === status.WON"
 >
-  <button mat-raised-button (click)="onPlayAgain()">
+  <button mat-raised-button color="primary" (click)="onPlayAgain()">
     {{ "app.playAgain" | transloco }}
   </button>
 </div>
