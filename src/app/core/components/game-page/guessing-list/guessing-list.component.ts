@@ -14,9 +14,9 @@ export class GuessingListComponent implements OnInit {
     return GameStatus;
   }
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   getDistanceFromLatLonInKm(
     lat1: number,
@@ -30,9 +30,9 @@ export class GuessingListComponent implements OnInit {
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(this._toRadians(lat1)) *
-        Math.cos(this._toRadians(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+      Math.cos(this._toRadians(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const d = R * c;
     return Math.round(d);

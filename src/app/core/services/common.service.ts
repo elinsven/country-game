@@ -9,7 +9,7 @@ export class CommonService {
   private countries: Country[];
   private secretKey = "6GHEI985FNKEN9";
 
-  constructor() {}
+  constructor() { }
 
   public setCountries(countries: Country[]) {
     this.countries = countries;

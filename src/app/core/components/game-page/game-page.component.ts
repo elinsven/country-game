@@ -26,8 +26,8 @@ export class GamePageComponent implements OnInit {
     getRandomCountry
       ? (this.randomCountry = getRandomCountry)
       : (this.randomCountry = this.commonService.setRandomCountry(
-          this.randomCountry,
-        ));
+        this.randomCountry,
+      ));
   }
 
   arrayBufferToBase64(buffer: any) {

@@ -10,7 +10,7 @@ export class ApiService {
   private baseUrl: string = environment.baseUrl;
   private apiUrl: string = this.baseUrl + "/getCountries";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getCountries() {
     return this.http.get(this.apiUrl).pipe(
