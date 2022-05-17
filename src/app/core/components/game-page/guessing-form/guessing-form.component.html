@@ -3,49 +3,27 @@
   <form [formGroup]="guessingForm">
     <mat-form-field>
       <mat-label>{{ "app.enterCountry" | transloco }}</mat-label>
-      <input
-        matInput
-        type="text"
-        formControlName="country"
-        [matAutocomplete]="auto"
-        matAutocompletePosition="below"
-      />
+      <input matInput type="text" formControlName="country" [matAutocomplete]="auto" matAutocompletePosition="below" />
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option
-          *ngFor="let option of filteredOptions | async"
-          [value]="option?.country | uppercase"
-        >
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option?.country | uppercase">
           {{ option?.country | uppercase }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      (click)="onSubmitGuess()"
-      [disabled]="
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmitGuess()" [disabled]="
         guesses?.length === 5 ||
         (recentGuess | uppercase) === (randomCountry?.country | uppercase)
-      "
-    >
+      ">
       {{ "app.guess" | transloco }}
     </button>
   </form>
 
   <!-- GUESSING LIST -->
-  <app-guessing-list
-    [gameStatus]="gameStatus"
-    [guesses]="guesses"
-    [randomCountry]="randomCountry"
-  ></app-guessing-list>
+  <app-guessing-list [gameStatus]="gameStatus" [guesses]="guesses" [randomCountry]="randomCountry"></app-guessing-list>
 </div>
 
 <!-- PLAY AGAIN BUTTON -->
-<div
-  class="play-again-btn"
-  *ngIf="guesses?.length === 5 || gameStatus === status.WON"
->
+<div class="play-again-btn" *ngIf="guesses?.length === 5 || gameStatus === status.WON">
   <button mat-raised-button color="primary" (click)="onPlayAgain()">
     {{ "app.playAgain" | transloco }}
   </button>

@@ -19,11 +19,3 @@ body {
   margin-right: auto;
   padding: 10px 0;
 }
-
-body.light-theme .mat-button {
-  color: var(--white);
-}
-
-body.dark-theme .mat-button {
-  color: var(--dark-grey);
-}

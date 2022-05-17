@@ -60,4 +60,4 @@ import { HowToPlayComponent } from "./core/components/how-to-play/how-to-play.co
   providers: [MatAutocompleteTrigger],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

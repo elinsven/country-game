@@ -12,7 +12,7 @@ export class AppShellComponent implements OnInit {
   countries: Country[];
   randomCountry: Country;
 
-  constructor(private api: ApiService, private commonService: CommonService) {}
+  constructor(private api: ApiService, private commonService: CommonService) { }
 
   ngOnInit(): void {
     this.getCountries();

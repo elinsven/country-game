@@ -1,72 +1,56 @@
 <div class="guessing-list">
-  <mat-list
-    role="list"
-    *ngFor="let guess of guesses; last as lastGuess"
-    [class.red]="
+  <mat-list role="list" *ngFor="let guess of guesses; last as lastGuess" [class.red]="
       this.getDistanceFromLatLonInKm(
         guess.location[0],
         guess.location[1],
         randomCountry.location[0],
         randomCountry.location[1]
       ) < 20000
-    "
-    [class.yellow]="
+    " [class.yellow]="
       this.getDistanceFromLatLonInKm(
         guess.location[0],
         guess.location[1],
         randomCountry.location[0],
         randomCountry.location[1]
       ) < 10000
-    "
-    [class.green]="
+    " [class.green]="
       this.getDistanceFromLatLonInKm(
         guess.location[0],
         guess.location[1],
         randomCountry.location[0],
         randomCountry.location[1]
       ) < 3000
-    "
-  >
+    ">
     <mat-list-item role="listitem">
       <div class="item-row">
         <div class="col">
           <p id="country-name">{{ guess.country | uppercase }}</p>
         </div>
         <div class="col">
-          <p
-            *ngIf="
+          <p *ngIf="
               gameStatus === status.LOST ||
               gameStatus === status.IN_PROGRESS ||
               !lastGuess
-            "
-          >
+            ">
             {{
-              this.getDistanceFromLatLonInKm(
-                guess.location[0],
-                guess.location[1],
-                randomCountry.location[0],
-                randomCountry.location[1]
-              )
+            this.getDistanceFromLatLonInKm(
+            guess.location[0],
+            guess.location[1],
+            randomCountry.location[0],
+            randomCountry.location[1]
+            )
             }}KM
           </p>
-          <mat-icon *ngIf="gameStatus === status.WON && lastGuess"
-            >celebration</mat-icon
-          >
+          <mat-icon *ngIf="gameStatus === status.WON && lastGuess">celebration</mat-icon>
         </div>
-        <div
-          class="col"
-          *ngIf="
+        <div class="col" *ngIf="
             gameStatus === status.LOST ||
             gameStatus === status.IN_PROGRESS ||
             !lastGuess
-          "
-        >
-          <mat-icon
-            [ngStyle]="
+          ">
+          <mat-icon [ngStyle]="
               calculateIconDirection(guess.location[0], guess.location[1])
-            "
-            >north</mat-icon
-          >
+            ">north</mat-icon>
         </div>
       </div>
     </mat-list-item>

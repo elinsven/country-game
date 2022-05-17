@@ -13,7 +13,7 @@ export class SettingsComponent implements OnInit {
     return Theme;
   }
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.darkTheme = localStorage.getItem("THEME");
