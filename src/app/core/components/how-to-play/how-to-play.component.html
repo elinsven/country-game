@@ -3,36 +3,22 @@
   <p>{{ "howToPlay.instructions" | transloco }}</p>
   <mat-divider></mat-divider>
   <h3>{{ "howToPlay.example" | transloco }}</h3>
-  <ng-template *ngTemplateOutlet="
-      exampleGuess;
-      context: {
-        color: 'red',
-        country: 'AUSTRALIA',
-        km: 13839,
-        direction: 'transform: rotate(305deg)'
-      }
-    "></ng-template>
+
+  <ng-template
+    *ngTemplateOutlet="exampleGuess; context: {color: 'red', country: 'AUSTRALIA', km: 13839, direction: 'transform: rotate(305deg)'}">
+  </ng-template>
   <p>{{ "howToPlay.exampleText1" | transloco }}</p>
-  <ng-template *ngTemplateOutlet="
-      exampleGuess;
-      context: {
-        color: 'yellow',
-        country: 'AFGHANISTAN',
-        km: 4353,
-        direction: 'transform: rotate(295deg)'
-      }
-    "></ng-template>
+
+  <ng-template
+    *ngTemplateOutlet="exampleGuess; context: {color: 'yellow', country: 'AFGHANISTAN', km: 4353, direction: 'transform: rotate(295deg)'}">
+  </ng-template>
   <p>{{ "howToPlay.exampleText2" | transloco }}</p>
-  <ng-template *ngTemplateOutlet="
-      exampleGuess;
-      context: {
-        color: 'green',
-        country: 'ALBANIA',
-        km: 670,
-        direction: 'transform: rotate(355deg)'
-      }
-    "></ng-template>
+
+  <ng-template
+    *ngTemplateOutlet="exampleGuess;context: { color: 'green', country: 'ALBANIA', km: 670, direction: 'transform: rotate(355deg)'}">
+  </ng-template>
   <p>{{ "howToPlay.exampleText3" | transloco }}</p>
+
   <div class="example-guess">
     <mat-list role="list" ngClass="green">
       <mat-list-item role="listitem">

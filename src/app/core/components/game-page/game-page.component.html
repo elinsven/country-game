@@ -1,11 +1,7 @@
 <div class="wrapper">
   <!-- COUNTRY IMAGE -->
-  <img [src]="
-      sanitize(
-        'data:image/jpg;base64, ' +
-          arrayBufferToBase64(randomCountry?.countryimage?.data)
-      )
-    " alt="Image of a country" />
+  <img [src]="sanitize('data:image/jpg;base64, ' + arrayBufferToBase64(randomCountry?.countryimage?.data))"
+    alt="Image of a country" />
 
   <!-- GUESSING FORM & LIST -->
   <app-guessing-form [countries]="countries" [randomCountry]="randomCountry" (playAgain)="playAgain($event)">

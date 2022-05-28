@@ -1,5 +1,8 @@
+export type Continent = "All continents" | "Africa" | "Asia" | "Europe" | "North America" | "South America" | "Australia/Oceania";
+
 export interface Country {
   country: string;
+  continent: Continent;
   countryimage: {
     data: number[];
     type: string;

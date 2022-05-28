@@ -44,8 +44,7 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initForm();
-    this._autoCompletion();
-    this.decryptCountry();
+    this.autoCompletion();
 
     window.onbeforeunload = () => this.ngOnDestroy();
   }
@@ -61,18 +60,10 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
       this.guessingForm.controls["country"]?.value.toUpperCase();
     const correctCountry = this.randomCountry.country.toUpperCase();
 
-    if (!this._checkArray(this.countries, this.recentGuess)) {
-      this._initMatSnackBar(
-        this.transloco.translate("app.unknownCountry"),
-        "",
-        1000,
-      );
-    } else if (this._checkArray(this.guesses, this.recentGuess)) {
-      this._initMatSnackBar(
-        this.transloco.translate("app.countryAlreadyGuessed"),
-        "",
-        1000,
-      );
+    if (!this.checkArray(this.countries, this.recentGuess)) {
+      this.initMatSnackBar(this.transloco.translate("app.unknownCountry"), "", 1000);
+    } else if (this.checkArray(this.guesses, this.recentGuess)) {
+      this.initMatSnackBar(this.transloco.translate("app.countryAlreadyGuessed"), "", 1000);
     } else {
       const regexCurrentGuess = new RegExp(
         "(^|s)" + this.recentGuess + "(s|$)",
@@ -89,33 +80,26 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
     } else if (this.recentGuess === correctCountry) {
       this.gameEnd("app.correct", GameStatus.WON, "");
     }
-    this._autoCompletion();
+    this.autoCompletion();
     this.guesses = JSON.parse(localStorage.getItem("GUESSES") as string);
     this.guessingForm.reset();
   }
 
   onPlayAgain() {
-    this.randomCountry = this.commonService.setRandomCountry(
-      this.randomCountry,
-    );
+    this.randomCountry = this.commonService.generateRandomCountry();
     this.playAgain.emit(this.randomCountry);
     this.resetGuesses();
     this.matSnackBar.dismiss();
     this.guessingForm.controls["country"].enable();
     this.guessingForm.reset();
     this.gameStatus = GameStatus.IN_PROGRESS;
-    this.decryptCountry();
   }
 
-  gameEnd(
-    notificationMessage: string,
-    gameStatus: GameStatus,
-    correctCountry?: string,
-  ) {
-    this._initMatSnackBar(
+  gameEnd(notificationMessage: string, gameStatus: GameStatus, correctCountry?: string) {
+    this.initMatSnackBar(
       this.transloco.translate(notificationMessage) + correctCountry,
       this.transloco.translate("app.close"),
-      undefined,
+      undefined
     );
     this.guessingForm.controls["country"].disable();
     this.gameStatus = gameStatus;
@@ -126,54 +110,37 @@ export class GuessingFormComponent implements OnInit, OnDestroy {
     this.guesses = [];
   }
 
-  decryptCountry() {
-    const decryptCountry = this.commonService.decrypt(
-      this.randomCountry?.country,
-    );
-    this.randomCountry.country = decryptCountry;
-  }
-
-  _autoCompletion() {
-    this.filteredOptions = this.guessingForm.controls[
-      "country"
-    ].valueChanges.pipe(
+  autoCompletion() {
+    this.filteredOptions = this.guessingForm.controls["country"].valueChanges.pipe(
       startWith(""),
-      map((value) => this._filter(value)),
+      map((value) => this.filter(value)),
     );
   }
 
-  _checkArray(array: Country[], value: string) {
+  checkArray(array: Country[], value: string) {
     const regex = new RegExp("(^|s)" + value + "(s|$)");
     return array.some((guess: Country) =>
       guess.country.toUpperCase().match(regex),
     );
   }
 
-  _initMatSnackBar(
-    message: string,
-    closeButton: string,
-    duration: number | undefined,
-  ) {
+  initMatSnackBar(message: string, closeButton: string, duration: number | undefined) {
     this.matSnackBar.open(message, closeButton, {
       verticalPosition: "top",
       duration: duration,
     });
   }
 
-  _filter(value: string): Country[] {
+  filter(value: string): Country[] {
     const filterValue = value?.toLowerCase();
-    return this.countries.filter(
-      (option: Country) =>
-        option.country.toLowerCase().indexOf(filterValue) === 0,
+    return this.countries.filter((option: Country) =>
+      option.country.toLowerCase().indexOf(filterValue) === 0,
     );
   }
 
   ngOnDestroy(): void {
-    if (
-      this.gameStatus === GameStatus.WON ||
-      this.gameStatus === GameStatus.LOST
-    ) {
-      this.commonService.setRandomCountry(this.randomCountry);
+    if (this.gameStatus === GameStatus.WON || this.gameStatus === GameStatus.LOST) {
+      this.commonService.generateRandomCountry();
       this.resetGuesses();
     }
   }

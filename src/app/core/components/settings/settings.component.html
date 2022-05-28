@@ -1,6 +1,22 @@
 <div class="wrapper">
-  <h2>SETTINGS</h2>
-  <strong>SETTINGS UNDER CONSTRUCTION</strong>
-  <mat-slide-toggle color="primary" (change)="toggleDarkMode($event)" [checked]="darkTheme === theme.DARK_THEME">Dark
-    mode</mat-slide-toggle>
+  <h2>{{ "settings.settings" | transloco }}</h2>
+  <div class="theme">
+    <mat-slide-toggle color="primary" (change)="toggleDarkMode($event)" [checked]="currentTheme === theme.DARK_THEME">
+      {{ "settings.darkMode" | transloco }}</mat-slide-toggle>
+  </div>
+  <div class="select-continent">
+
+    <form [formGroup]="form">
+      <span>{{ "settings.filterCountries" | transloco }}</span>
+      <mat-form-field>
+        <mat-select formControlName="continent">
+          <mat-option *ngFor="let continent of continents" [value]="continent" [disabled]="continent === 'Antarctica'">
+            {{continent}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+
+  </div>
+
 </div>
