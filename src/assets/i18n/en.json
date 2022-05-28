@@ -19,5 +19,14 @@
     "exampleText2": "AFGHANISTAN is your second guess which has a yellow background color and is closer than your last guess. The country is 670KM away and the mystery country is located northwest from the guessed country.",
     "exampleText3": "Your third guess is ALBANIA and it is 670KM away and the mystery country is located north from the guessed country. When your getting fairly close to the mystery country the background color is green.",
     "exampleText4": "Next and last guess is HUNGARY which is the mystery country."
+  },
+  "settings": {
+    "settings": "SETTINGS",
+    "darkMode": "Dark mode",
+    "filterCountries": "Filter countries by continent",
+    "filterCountriesDialogTitle": "Ongoing guess running",
+    "filterCountriesDialogText": "Do you want to cancel the ongoing guess and start over?",
+    "yes": "Yes",
+    "no": "No"
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
 import { Country, GameStatus } from "src/app/shared/models/models";
 
 @Component({
@@ -10,6 +10,8 @@ export class GuessingListComponent implements OnInit {
   @Input() gameStatus: GameStatus;
   @Input() guesses: Country[];
   @Input() randomCountry: Country;
+
+  distance: number;
   get status(): typeof GameStatus {
     return GameStatus;
   }
@@ -18,54 +20,43 @@ export class GuessingListComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  getDistanceFromLatLonInKm(
-    lat1: number,
-    lon1: number,
-    lat2: number,
-    lon2: number,
-  ) {
+  getBackgroundColor(guess: Country): string {
+    this.distance = this.getDistanceFromLatLonInKm(guess.location[0], guess.location[1])
+    if (this.distance < 3000) {
+      return "green"
+    } else if (this.distance <= 10000) {
+      return "yellow"
+    } else {
+      return "red"
+    }
+  }
+
+  getDistanceFromLatLonInKm(startLat: number, startLng: number) {
     const R = 6371;
-    const dLat = this._toRadians(lat2 - lat1);
-    const dLon = this._toRadians(lon2 - lon1);
+    const dLat = this.toRadians(this.randomCountry.location[0] - startLat);
+    const dLon = this.toRadians(this.randomCountry.location[1] - startLng);
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(this._toRadians(lat1)) *
-      Math.cos(this._toRadians(lat2)) *
+      Math.cos(this.toRadians(startLat)) *
+      Math.cos(this.toRadians(this.randomCountry.location[0])) *
       Math.sin(dLon / 2) *
       Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const d = R * c;
+
     return Math.round(d);
   }
 
-  calculateIconDirection(lat1: number, long1: number) {
-    const degree = this._calculateBearing(
-      lat1,
-      long1,
-      this.randomCountry.location[0],
-      this.randomCountry.location[1],
-    );
-    return { transform: `rotate(${degree}deg)` };
+  calculateIconDirection(startLat: number, startLng: number) {
+    const deg = this.calculateBearing(startLat, startLng, this.randomCountry.location[0], this.randomCountry.location[1]);
+    return { transform: `rotate(${deg}deg)` };
   }
 
-  _toRadians(deg: number) {
-    return deg * (Math.PI / 180);
-  }
-
-  _toDegree(deg: number) {
-    return deg * (180 / Math.PI);
-  }
-
-  _calculateBearing(
-    startLat: number,
-    startLng: number,
-    destLat: number,
-    destLng: number,
-  ) {
-    startLat = this._toRadians(startLat);
-    startLng = this._toRadians(startLng);
-    destLat = this._toRadians(destLat);
-    destLng = this._toRadians(destLng);
+  calculateBearing(startLat: number, startLng: number, destLat: number, destLng: number) {
+    startLat = this.toRadians(startLat);
+    startLng = this.toRadians(startLng);
+    destLat = this.toRadians(destLat);
+    destLng = this.toRadians(destLng);
 
     let dLon = destLng - startLng;
     const x = Math.tan(destLat / 2 + Math.PI / 4);
@@ -79,7 +70,15 @@ export class GuessingListComponent implements OnInit {
       }
     }
 
-    let targetBearing = (this._toDegree(Math.atan2(dLon, dPhi)) + 360) % 360;
+    let targetBearing = (this.toDegree(Math.atan2(dLon, dPhi)) + 360) % 360;
     return targetBearing;
+  }
+
+  toRadians(deg: number) {
+    return deg * (Math.PI / 180);
+  }
+
+  toDegree(deg: number) {
+    return deg * (180 / Math.PI);
   }
 }

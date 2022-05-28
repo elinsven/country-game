@@ -7,13 +7,13 @@ import { map } from "rxjs";
   providedIn: "root",
 })
 export class ApiService {
-  private baseUrl: string = environment.baseUrl;
-  private apiUrl: string = this.baseUrl + "/getCountries";
+  private _baseUrl: string = environment.baseUrl;
+  private _apiUrl: string = this._baseUrl + "/getCountries";
 
   constructor(private http: HttpClient) { }
 
   public getCountries() {
-    return this.http.get(this.apiUrl).pipe(
+    return this.http.get(this._apiUrl).pipe(
       map((data) => {
         return data;
       }),
