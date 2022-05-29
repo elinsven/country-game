@@ -20,11 +20,10 @@ export class GamePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let getRandomCountry = JSON.parse(
+    const getRandomCountry = JSON.parse(
       localStorage.getItem("RANDOM_COUNTRY") as string,
     );
-    getRandomCountry = this.decryptCountry(getRandomCountry);
-    getRandomCountry ? this.randomCountry = getRandomCountry :
+    getRandomCountry ? this.randomCountry = this.decryptCountry(getRandomCountry) :
       this.randomCountry = this.commonService.generateRandomCountry();
   }
 
