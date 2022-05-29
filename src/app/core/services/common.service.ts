@@ -15,7 +15,9 @@ export class CommonService {
   public setCountries(countries: Country[]) {
     this._allCountries = countries;
     this._countries = countries;
-    this._countries = this.filterCountriesByContinent(localStorage.getItem("CONTINENT"));
+    if (localStorage.getItem("CONTINENT")) {
+      this._countries = this.filterCountriesByContinent(localStorage.getItem("CONTINENT"));
+    }
   }
 
   public filterCountriesByContinent(continent: Continent | string | null): Country[] {
@@ -35,6 +37,7 @@ export class CommonService {
   public generateRandomCountry(): Country {
     const random = Math.floor(Math.random() * this._countries.length);
     const randomCountry = this._countries[random];
+
     const encryptCountry = this._encrypt(randomCountry.country);
     const encryptContinent = this._encrypt(randomCountry.continent);
     randomCountry.country = encryptCountry;
@@ -45,7 +48,6 @@ export class CommonService {
     const decryptContinent: any = this.decrypt(randomCountry.continent);
     randomCountry.country = decryptCountry;
     randomCountry.continent = decryptContinent;
-    console.log("Decrypt: ", randomCountry)
 
     return randomCountry;
   }

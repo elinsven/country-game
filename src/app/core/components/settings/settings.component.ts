@@ -38,7 +38,7 @@ export class SettingsComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      continent: new FormControl(localStorage.getItem("CONTINENT"))
+      continent: new FormControl(localStorage.getItem("CONTINENT") || "All continents")
     })
   }
 
