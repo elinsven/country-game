@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <h2>{{ "app.settings.settings" | transloco }}</h2>
+
+  <div class="setting">
+    <p>{{ "app.settings.darkMode" | transloco }}</p>
+    <mat-slide-toggle color="primary" (change)="toggleDarkMode($event)" [checked]="currentTheme === theme.DARK_THEME">
+    </mat-slide-toggle>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="setting">
+    <p>{{ "app.settings.filterCountries" | transloco }}</p>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-select formControlName="continent">
+          <mat-option *ngFor="let continent of continents" [value]="continent" [disabled]="continent === 'Antarctica'">
+            {{continent}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+</div>

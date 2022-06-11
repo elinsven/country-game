@@ -1,0 +1,13 @@
+@import "../theme/app-theme.scss";
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  p {
+    margin-top: 10px;
+  }
+}

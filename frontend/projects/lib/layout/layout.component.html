@@ -1,0 +1,23 @@
+<div class="container">
+  <header id="header">
+
+    <nav class="menuItems">
+      <ul>
+        <li *ngFor="let item of menuItems" (click)="pageChange.emit(item)">
+          <button *ngIf="item.icon" mat-icon-button [attr.aria-label]="item.ariaLabel">
+            <mat-icon>{{ item.icon }}</mat-icon>
+          </button>
+          <h1 *ngIf="item.title">{{ item.title }}</h1>
+        </li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <mat-divider></mat-divider>
+
+  <main id="content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

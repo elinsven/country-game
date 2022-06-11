@@ -1,0 +1,33 @@
+@import "../theme/app-theme.scss";
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  h1 {
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.mat-divider {
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}

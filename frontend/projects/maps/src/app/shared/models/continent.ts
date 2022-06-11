@@ -1,0 +1,1 @@
+export type Continent = "All continents" | "Africa" | "Asia" | "Europe" | "North America" | "South America" | "Australia/Oceania";

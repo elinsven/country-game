@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>{{ "app.settings.filterCountriesDialogTitle" | transloco }}</h2>
+<mat-dialog-content>
+  <p>{{ "app.settings.filterCountriesDialogText" | transloco }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button [mat-dialog-close]="false">{{ "app.settings.no" | transloco }}</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">{{ "app.settings.yes" | transloco }}</button>
+</mat-dialog-actions>
