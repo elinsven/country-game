@@ -1,0 +1,16 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  height: 40px;
+
+  p {
+    margin: 0;
+  }
+}

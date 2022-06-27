@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="title">
+    <h2>{{ "maps.settings.settings" | transloco }}</h2>
+    <button mat-icon-button (click)="closePage()" [attr.aria-label]="'maps.settings.closePage' | transloco">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+
+  <div class="setting">
+    <p>{{ "maps.settings.darkMode" | transloco }}</p>
+    <mat-slide-toggle color="primary" (change)="toggleDarkMode($event)" [checked]="currentTheme === theme.DARK_THEME">
+    </mat-slide-toggle>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="setting">
+    <p>{{ "maps.settings.filterCountries" | transloco }}</p>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-select formControlName="continent">
+          <mat-option *ngFor="let continent of continents" [value]="continent" [disabled]="continent === 'Antarctica'">
+            {{continent}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+</div>

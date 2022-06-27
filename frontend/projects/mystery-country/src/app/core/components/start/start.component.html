@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <div class="applications" *ngFor="let application of applications">
+    <div (click)="selectApplication(application.path)">
+      <img [src]="application.img" alt="Image of application">
+      <h2>{{ application.title }}</h2>
+    </div>
+  </div>
+</div>

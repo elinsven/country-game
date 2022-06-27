@@ -8,13 +8,13 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "paths": {
       "lib": [
         "dist/lib/lib",
         "dist/lib"
       ]
     },
-    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,

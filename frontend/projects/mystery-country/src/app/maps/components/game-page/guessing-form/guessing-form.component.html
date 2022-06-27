@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <form [formGroup]="guessingForm">
+    <mat-form-field>
+      <mat-label>{{ "maps.game.enterCountry" | transloco }}</mat-label>
+      <input matInput type="text" formControlName="country" [matAutocomplete]="auto" matAutocompletePosition="below" />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option?.country | uppercase">
+          {{ option?.country | uppercase }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmitGuess()"
+      [disabled]="guesses?.length === 5 || (recentGuess | uppercase) === (randomCountry?.country | uppercase)">
+      {{ "maps.game.guess" | transloco }}
+    </button>
+  </form>
+
+  <maps-guessing-list [gameState]="gameState" [guesses]="guesses" [randomCountry]="randomCountry"></maps-guessing-list>
+</div>
+
+<div class="play-again-btn" *ngIf="guesses?.length === 5 || gameState === state.WON">
+  <button mat-raised-button color="primary" (click)="onPlayAgain()">
+    {{ "maps.game.playAgain" | transloco }}
+  </button>
+</div>
