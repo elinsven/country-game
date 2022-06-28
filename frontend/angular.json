@@ -27,8 +27,16 @@
             "tsConfig": "projects/mystery-country/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/mystery-country/src/favicon.ico",
-              "projects/mystery-country/src/assets"
+              {
+                "glob": "**/favicon.ico",
+                "input": "mystery-country/src",
+                "output": ""
+              },
+              {
+                "glob": "**/*",
+                "input": "mystery-country/src/assets",
+                "output": "assets"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
