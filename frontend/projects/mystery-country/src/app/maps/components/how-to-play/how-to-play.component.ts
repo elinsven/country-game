@@ -14,7 +14,7 @@ export class MapsHowToPlayComponent implements OnInit {
   }
 
   closePage() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/maps"]);
   }
 
 }

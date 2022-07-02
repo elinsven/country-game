@@ -43,7 +43,7 @@ export class MapsSettingsComponent implements OnInit {
   }
 
   closePage() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/maps"]);
   }
 
   initForm() {

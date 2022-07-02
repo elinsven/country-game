@@ -1,6 +1,6 @@
 <ng-template [ngIf]="isLoading">
   <div class="loading-screen">
-    <mat-spinner></mat-spinner>
+    <mat-spinner [color]="spinnerColor"></mat-spinner>
     <p>{{ loadingText }}</p>
   </div>
 </ng-template>

@@ -4,7 +4,7 @@
         {
             "name": "Application",
             "id": "interface-Application-a97fdd4bc91b6f980976adf1c52b15fdcaddacd9602166905ac538a5e9ab2f6891b1849826f3c0a685ca1daabbb9b606204a609c2782068e0061f367a876bc56",
-            "file": "projects/mystery-country/src/app/shared/models/application.ts",
+            "file": "projects/lib/models/application.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
@@ -149,18 +149,6 @@
             ],
             "indexSignatures": [],
             "kind": 165,
-            "methods": []
-        },
-        {
-            "name": "User",
-            "id": "interface-User-9c7e5f1bbbab702cb032307d130876cb68969b0cd4eedef32a0c8cad8081a54e5f8f577ed6ad4539c1b99a1d246cb34031d198c2ea8eba440e64e91b14f01fdc",
-            "file": "stories/User.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "export interface User {}\n",
-            "properties": [],
-            "indexSignatures": [],
             "methods": []
         }
     ],
@@ -760,104 +748,60 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<lib-layout [menuItems]=\"menuItems\" (pageChange)=\"pageChange($event)\"></lib-layout>"
+            "templateData": "<lib-app-list [menuItems]=\"menuItems\" (pageChange)=\"pageChange($event)\"></lib-app-list>"
         },
         {
-            "name": "ButtonComponent",
-            "id": "component-ButtonComponent-4ef205c97a334c309aa4001c8ab4a6d9571dcae18d0e85aaf0d367467ab5d3a9f13ab3573726f1fcb409bc9b49894dadfb80b1bbe1b6ba7041455ad9d4922004",
-            "file": "stories/button.component.ts",
+            "name": "LibAppListComponent",
+            "id": "component-LibAppListComponent-cfe00c31eb3fa42f697c866ca2ecd7766192ca9922621d25513467b9abbf3a0716e8485d64a2a4096771c12270c038d648126ea39d7146fd20e2849d110074c5",
+            "file": "projects/lib/app-list/app-list.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "storybook-button",
+            "selector": "lib-app-list",
             "styleUrls": [
-                "./button.css"
+                "./app-list.component.scss"
             ],
             "styles": [],
-            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
-            "templateUrl": [],
+            "templateUrl": [
+                "./app-list.component.html"
+            ],
             "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "backgroundColor",
+                    "name": "applications",
+                    "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nWhat background color to use\n",
-                    "description": "<p>What background color to use</p>\n",
-                    "line": 26,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "label",
-                    "defaultValue": "'Button'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "pos": 711,
-                            "end": 724,
-                            "flags": 4227072,
-                            "modifierFlagsCache": 0,
-                            "transformFlags": 0,
-                            "kind": 325,
-                            "tagName": {
-                                "pos": 712,
-                                "end": 720,
-                                "flags": 4227072,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
-                                "kind": 79,
-                                "escapedText": "required"
-                            },
-                            "comment": ""
-                        }
-                    ],
-                    "rawdescription": "\n\nButton contents\n\n",
-                    "description": "<p>Button contents</p>\n",
-                    "line": 40,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "primary",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nIs this the principal call to action on the page?\n",
-                    "description": "<p>Is this the principal call to action on the page?</p>\n",
-                    "line": 20,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "size",
-                    "defaultValue": "'medium'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nHow large should the button be?\n",
-                    "description": "<p>How large should the button be?</p>\n",
-                    "line": 32,
-                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "line": 11,
+                    "type": "Application[]",
                     "decorators": []
                 }
             ],
             "outputsClass": [
                 {
-                    "name": "onClick",
-                    "defaultValue": "new EventEmitter<Event>()",
+                    "name": "applicationSelect",
+                    "defaultValue": "new EventEmitter<Application>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nOptional click handler\n",
-                    "description": "<p>Optional click handler</p>\n",
-                    "line": 46,
+                    "line": 12,
                     "type": "EventEmitter"
                 }
             ],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -865,110 +809,38 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { Application } from '../models/application';\n\n@Component({\n  selector: 'lib-app-list',\n  templateUrl: './app-list.component.html',\n  styleUrls: ['./app-list.component.scss']\n})\nexport class LibAppListComponent implements OnInit {\n  @Input() applications: Application[] = [];\n  @Output() applicationSelect = new EventEmitter<Application>();\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
-                    "styleUrl": "./button.css"
+                    "data": "",
+                    "styleUrl": "./app-list.component.scss"
                 }
             ],
             "stylesData": "",
-            "accessors": {
-                "classes": {
-                    "name": "classes",
-                    "getSignature": {
-                        "name": "classes",
-                        "type": "[]",
-                        "returnType": "string[]",
-                        "line": 48
-                    }
-                }
-            }
-        },
-        {
-            "name": "HeaderComponent",
-            "id": "component-HeaderComponent-a557eec14f72c438a8033301f4d6ce023e0a1844a3b06ec2b38794a612acc31735ae78a5ee10071b230c8c20d699eb914554e69d07ade54adb371da8efb464cc",
-            "file": "stories/header.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-header",
-            "styleUrls": [
-                "./header.css"
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 12
+            },
+            "implements": [
+                "OnInit"
             ],
-            "styles": [],
-            "template": "<header>    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (onClick)=\"onLogout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (onClick)=\"onLogin.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            primary\n            size=\"small\"\n            primary=\"true\"\n            class=\"margin-left\"\n            (onClick)=\"onCreateAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "user",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 65,
-                    "type": "User | null",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onCreateAccount",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 74,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogin",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 68,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogout",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 71,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { User } from './User';\n\n@Component({\n  selector: 'storybook-header',\n  template: `<header>\n    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (onClick)=\"onLogout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (onClick)=\"onLogin.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            primary\n            size=\"small\"\n            primary=\"true\"\n            class=\"margin-left\"\n            (onClick)=\"onCreateAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n})\nexport default class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".wrapper {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\nsvg {\n  display: inline-block;\n  vertical-align: top;\n}\n\nh1 {\n  font-weight: 900;\n  font-size: 20px;\n  line-height: 1;\n  margin: 6px 0 6px 10px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nbutton + button {\n  margin-left: 10px;\n}\n\n.welcome {\n  color: #333;\n  font-size: 14px;\n  margin-right: 10px;\n}\n",
-                    "styleUrl": "./header.css"
-                }
-            ],
-            "stylesData": ""
+            "templateData": "<div class=\"applications\" *ngFor=\"let application of applications\">\n  <div (click)=\"applicationSelect.emit(application)\">\n    <img [src]=\"application.img\" [alt]=\"'Image of' + application.title + 'application'\">\n    <h2>{{ application.title }}</h2>\n  </div>\n</div>"
         },
         {
             "name": "LibLayoutComponent",
-            "id": "component-LibLayoutComponent-30684836fd37c1b07870454b19c6c171bcfd8139c45d9fe69006a82e8a9cee894ca0e318a94064499de3cf452ea69b9fcabf25e81f4ab0a078ca8a031efe4c3b",
+            "id": "component-LibLayoutComponent-64efdc97bb08f3e7df5715df24b27de3120452ac6a009d0f66cb8b38ce83975b5524b525d75f921da1768cc0724ef1dcc910fcc61af7db2b8e999bc401b933a3",
             "file": "projects/lib/layout/layout.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "lib-layout",
+            "selector": "lib-app-list",
             "styleUrls": [
                 "./layout.component.scss"
             ],
@@ -1017,11 +889,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { MenuItem } from '../models/menuItem';\n\n@Component({\n  selector: 'lib-layout',\n  templateUrl: './layout.component.html',\n  styleUrls: ['./layout.component.scss']\n})\nexport class LibLayoutComponent implements OnInit {\n  @Input() menuItems: MenuItem[];\n  @Output() pageChange = new EventEmitter<MenuItem>();\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { MenuItem } from '../models/menuItem';\n\n@Component({\n  selector: 'lib-app-list',\n  templateUrl: './layout.component.html',\n  styleUrls: ['./layout.component.scss']\n})\nexport class LibLayoutComponent implements OnInit {\n  @Input() menuItems: MenuItem[];\n  @Output() pageChange = new EventEmitter<MenuItem>();\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../theme/app-theme.scss\";\n\n#header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n\n  h1 {\n    margin: 0 10px;\n    display: inline-block;\n    vertical-align: middle;\n    cursor: pointer;\n  }\n}\n\n.menuItems {\n  margin: 5px 0;\n}\n\nul {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n\n  li {\n    display: inline-block;\n    padding: 0;\n    margin: 0;\n  }\n}\n\n.mat-divider {\n  max-width: 450px;\n  margin-left: auto;\n  margin-right: auto;\n}",
+                    "data": "#header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n\n  h1 {\n    margin: 0 10px;\n    display: inline-block;\n    vertical-align: middle;\n    cursor: pointer;\n  }\n}\n\n.menuItems {\n  margin: 5px 0;\n}\n\nul {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n\n  li {\n    display: inline-block;\n    padding: 0;\n    margin: 0;\n  }\n}\n\n.mat-divider {\n  max-width: 450px;\n  margin-left: auto;\n  margin-right: auto;\n}",
                     "styleUrl": "./layout.component.scss"
                 }
             ],
@@ -1041,7 +913,7 @@
         },
         {
             "name": "LibLoadingScreenComponent",
-            "id": "component-LibLoadingScreenComponent-20d4ff2559177f00371e3f24b35090f8a0bf76a536415ccdc749f266ef3effca7c0362db6f70c6b4aec44bb3002f54d5c157796e3a3106b6e7d1f3a480c1af71",
+            "id": "component-LibLoadingScreenComponent-927b30c951865ba1e909e27f7ab7c6eedccef666d4d1506a44b7db3fa2e336a1a818442fd79775cc12b0f693f310590a6eed7b6cd33d5795c53b5880035bd2af",
             "file": "projects/lib/loading-screen/loading-screen.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1063,7 +935,9 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 9,
+                    "rawdescription": "\n\nIf spinner is visible\n",
+                    "description": "<p>If spinner is visible</p>\n",
+                    "line": 16,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1071,8 +945,21 @@
                     "name": "loadingText",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 10,
+                    "rawdescription": "\n\nText under spinner\n",
+                    "description": "<p>Text under spinner</p>\n",
+                    "line": 20,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "spinnerColor",
+                    "defaultValue": "\"primary\"",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nColor of the spinner\n",
+                    "description": "<p>Color of the spinner</p>\n",
+                    "line": 24,
+                    "type": "\"primary\" | \"accent\"",
                     "decorators": []
                 }
             ],
@@ -1085,7 +972,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 14,
+                    "line": 28,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1094,14 +981,14 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
+            "description": "<p>A progress spinner with text, indicating if something is loading</p>\n",
+            "rawdescription": "\n\nA progress spinner with text, indicating if something is loading\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'lib-loading-screen',\n  templateUrl: './loading-screen.component.html',\n  styleUrls: ['./loading-screen.component.scss']\n})\nexport class LibLoadingScreenComponent implements OnInit {\n  @Input() isLoading: boolean = false;\n  @Input() loadingText: string;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\n/**\n * A progress spinner with text, indicating if something is loading\n */\n\n@Component({\n  selector: 'lib-loading-screen',\n  templateUrl: './loading-screen.component.html',\n  styleUrls: ['./loading-screen.component.scss']\n})\nexport class LibLoadingScreenComponent implements OnInit {\n  /**\n   * If spinner is visible\n   */\n  @Input() isLoading: boolean = false;\n  /**\n   * Text under spinner\n   */\n  @Input() loadingText: string;\n  /**\n   * Color of the spinner\n   */\n  @Input() spinnerColor: \"primary\" | \"accent\" = \"primary\";\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../theme/app-theme.scss\";\n\n.loading-screen {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n\n  p {\n    margin-top: 10px;\n  }\n}",
+                    "data": ".loading-screen {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n\n  p {\n    margin-top: 10px;\n  }\n}",
                     "styleUrl": "./loading-screen.component.scss"
                 }
             ],
@@ -1112,16 +999,16 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 10
+                "line": 24
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<ng-template [ngIf]=\"isLoading\">\n  <div class=\"loading-screen\">\n    <mat-spinner></mat-spinner>\n    <p>{{ loadingText }}</p>\n  </div>\n</ng-template>"
+            "templateData": "<ng-template [ngIf]=\"isLoading\">\n  <div class=\"loading-screen\">\n    <mat-spinner [color]=\"spinnerColor\"></mat-spinner>\n    <p>{{ loadingText }}</p>\n  </div>\n</ng-template>"
         },
         {
             "name": "MapsApplicationsComponent",
-            "id": "component-MapsApplicationsComponent-f3ac2fe15416aa62c0284574634d7b4cf639ed4fca189a9a16d4f44f9735169f847c54ecc66a8eb2f836fa29f3c57c566f9553d8e088764da11dd117811d8535",
+            "id": "component-MapsApplicationsComponent-e925aa8d0ee1a27edb238ba589757986902f8103b17e91c3c3c60a1b3f085c0f3c337adc2cbda570d575847530294d1fe4de6354c0b8350fb2dc3ba79c92dad4",
             "file": "projects/mystery-country/src/app/maps/components/applications/applications.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1169,7 +1056,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'maps-applications',\n  templateUrl: './applications.component.html',\n  styleUrls: ['./applications.component.scss']\n})\nexport class MapsApplicationsComponent implements OnInit {\n\n  constructor(private router: Router) { }\n\n  ngOnInit(): void {\n  }\n\n  closePage() {\n    this.router.navigate([\"/\"]);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'maps-applications',\n  templateUrl: './applications.component.html',\n  styleUrls: ['./applications.component.scss']\n})\nexport class MapsApplicationsComponent implements OnInit {\n\n  constructor(private router: Router) { }\n\n  ngOnInit(): void {\n  }\n\n  closePage() {\n    this.router.navigate([\"/maps\"]);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1456,7 +1343,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<lib-loading-screen [isLoading]=\"!countries\" [loadingText]=\"'maps.appShell.loadingGame' | transloco\">\n</lib-loading-screen>\n\n<div *ngIf=\"countries\">\n  <lib-layout [menuItems]=\"menuItems\" (pageChange)=\"pageChange($event)\"></lib-layout>\n</div>"
+            "templateData": "<lib-loading-screen [isLoading]=\"!countries\" [loadingText]=\"'maps.appShell.loadingGame' | transloco\">\n</lib-loading-screen>\n\n<div *ngIf=\"countries\">\n  <lib-app-list [menuItems]=\"menuItems\" (pageChange)=\"pageChange($event)\"></lib-app-list>\n</div>"
         },
         {
             "name": "MapsGamePageComponent",
@@ -2491,7 +2378,7 @@
         },
         {
             "name": "MapsHowToPlayComponent",
-            "id": "component-MapsHowToPlayComponent-e50a2e1a63fb2306cfbe3f83e47534fb0cf3d43e408e9db55b84cb51454847173cd8a991a56d9aba7574815e7ccfa385dd9488fc5be435906165fc5ce1cf7bd8",
+            "id": "component-MapsHowToPlayComponent-be3c4e765c6091852c240e914db7660dac9ac8b923974ce001bce7843cdfed4aacac6da27dcffd480b1a321bea64440dd926c1a34b785b3aeded0d6d3496f5e4",
             "file": "projects/mystery-country/src/app/maps/components/how-to-play/how-to-play.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2539,7 +2426,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'maps-how-to-play',\n  templateUrl: './how-to-play.component.html',\n  styleUrls: ['./how-to-play.component.scss']\n})\nexport class MapsHowToPlayComponent implements OnInit {\n\n  constructor(private router: Router) { }\n\n  ngOnInit(): void {\n  }\n\n  closePage() {\n    this.router.navigate([\"/\"]);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'maps-how-to-play',\n  templateUrl: './how-to-play.component.html',\n  styleUrls: ['./how-to-play.component.scss']\n})\nexport class MapsHowToPlayComponent implements OnInit {\n\n  constructor(private router: Router) { }\n\n  ngOnInit(): void {\n  }\n\n  closePage() {\n    this.router.navigate([\"/maps\"]);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2581,7 +2468,7 @@
         },
         {
             "name": "MapsLeaderboardComponent",
-            "id": "component-MapsLeaderboardComponent-8ed7e013587d3c826d5c7b63cff3930e010701dc3e5a1982ce1f61e2b0f8d36ad897b2120c37ddfebf82edb01757f1833955d1ecf7b35f5e0420320263546e62",
+            "id": "component-MapsLeaderboardComponent-4e22009a6d4c3ec0f57504c7895d5d33bdb3b12e9f467738d7861f7ad73c2d2a7c54cb9ce69b2efce8a171fc4aa2d3f96230834fd6901b55d302861a64ade8d2",
             "file": "projects/mystery-country/src/app/maps/components/leaderboard/leaderboard.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2629,7 +2516,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'maps-leaderboard',\n  templateUrl: './leaderboard.component.html',\n  styleUrls: ['./leaderboard.component.scss']\n})\nexport class MapsLeaderboardComponent implements OnInit {\n\n  constructor(private router: Router) { }\n\n  ngOnInit(): void {\n  }\n\n  closePage() {\n    this.router.navigate([\"/\"]);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'maps-leaderboard',\n  templateUrl: './leaderboard.component.html',\n  styleUrls: ['./leaderboard.component.scss']\n})\nexport class MapsLeaderboardComponent implements OnInit {\n\n  constructor(private router: Router) { }\n\n  ngOnInit(): void {\n  }\n\n  closePage() {\n    this.router.navigate([\"/maps\"]);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2671,7 +2558,7 @@
         },
         {
             "name": "MapsSettingsComponent",
-            "id": "component-MapsSettingsComponent-d8baca653368e0020767a2d73503d0337654baef523bcc7dfdc33d700d772c49a20e2995ae1b62b820cfd4c959f851c0349ae1e18f261a5cb3a63a5a13b60c65",
+            "id": "component-MapsSettingsComponent-203d86f650e6ab70c7456c7409cba86fbeb9f20e95c9ef181b04be61b2b25791ae9625dd22876be86ce80e62efb89e2f37ebb6d4c9ae9b5c43bfd540a6fa9f3f",
             "file": "projects/mystery-country/src/app/maps/components/settings/settings.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2882,7 +2769,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from \"@angular/core\";\nimport { FormControl, FormGroup } from \"@angular/forms\";\nimport { MatDialog } from \"@angular/material/dialog\";\nimport { MatSlideToggleChange } from \"@angular/material/slide-toggle\";\nimport { Router } from \"@angular/router\";\nimport { Continent } from \"../../../shared/models/continent\";\nimport { Theme } from \"../../../shared/models/theme\";\nimport { CommonService } from \"../../services/common.service\";\n\n@Component({\n  selector: \"maps-settings\",\n  templateUrl: \"./settings.component.html\",\n  styleUrls: [\"./settings.component.scss\"],\n})\nexport class MapsSettingsComponent implements OnInit {\n  form: FormGroup;\n  currentTheme: Theme | string | null;\n  get theme(): typeof Theme {\n    return Theme;\n  }\n  continents: string[] = [\n    \"All continents\",\n    \"Africa\",\n    \"Asia\",\n    \"Europe\",\n    \"North America\",\n    \"South America\",\n    \"Australia/Oceania\",\n    \"Antarctica\"\n  ]\n\n  constructor(\n    private router: Router,\n    private commonService: CommonService,\n    private dialog: MatDialog\n  ) { }\n\n  ngOnInit(): void {\n    this.currentTheme = localStorage.getItem(\"THEME\");\n\n    this.initForm();\n    this.changeContinent();\n  }\n\n  closePage() {\n    this.router.navigate([\"/\"]);\n  }\n\n  initForm() {\n    this.form = new FormGroup({\n      continent: new FormControl(localStorage.getItem(\"CONTINENT\") || \"All continents\")\n    })\n  }\n\n  toggleDarkMode(event: MatSlideToggleChange) {\n    event.checked ? this.setTheme(Theme.DARK_THEME, \"dark-theme\", \"light-theme\") :\n      this.setTheme(Theme.LIGHT_THEME, \"light-theme\", \"dark-theme\");\n  }\n\n  setTheme(value: Theme, addTheme: string, removeTheme: string) {\n    localStorage.setItem(\"THEME\", value);\n    document.body.classList.add(addTheme);\n    document.body.classList.remove(removeTheme);\n  }\n\n  changeContinent() {\n    this.form.get(\"continent\")?.valueChanges.subscribe(change => {\n      if (localStorage.getItem(\"GUESSES\") === null) {\n        this.filterCountries(change);\n      } else {\n        const dialog = this.dialog.open(MapsSettingsDialog);\n        dialog.afterClosed().subscribe(result => {\n          result ? this.filterCountries(change) :\n            this.form.get(\"continent\")?.setValue(localStorage.getItem(\"CONTINENT\"), { emitEvent: false });\n        });\n      }\n    })\n  }\n\n  filterCountries(continent: Continent) {\n    this.commonService.filterCountriesByContinent(continent);\n    this.commonService.generateRandomCountry();\n    localStorage.setItem(\"CONTINENT\", continent);\n    if (localStorage.getItem(\"GUESSES\")) {\n      localStorage.removeItem(\"GUESSES\");\n    }\n  }\n}\n\n@Component({\n  selector: \"maps-settings-dialog\",\n  templateUrl: \"settings-dialog.html\",\n})\nexport class MapsSettingsDialog { }",
+            "sourceCode": "import { Component, OnInit } from \"@angular/core\";\nimport { FormControl, FormGroup } from \"@angular/forms\";\nimport { MatDialog } from \"@angular/material/dialog\";\nimport { MatSlideToggleChange } from \"@angular/material/slide-toggle\";\nimport { Router } from \"@angular/router\";\nimport { Continent } from \"../../../shared/models/continent\";\nimport { Theme } from \"../../../shared/models/theme\";\nimport { CommonService } from \"../../services/common.service\";\n\n@Component({\n  selector: \"maps-settings\",\n  templateUrl: \"./settings.component.html\",\n  styleUrls: [\"./settings.component.scss\"],\n})\nexport class MapsSettingsComponent implements OnInit {\n  form: FormGroup;\n  currentTheme: Theme | string | null;\n  get theme(): typeof Theme {\n    return Theme;\n  }\n  continents: string[] = [\n    \"All continents\",\n    \"Africa\",\n    \"Asia\",\n    \"Europe\",\n    \"North America\",\n    \"South America\",\n    \"Australia/Oceania\",\n    \"Antarctica\"\n  ]\n\n  constructor(\n    private router: Router,\n    private commonService: CommonService,\n    private dialog: MatDialog\n  ) { }\n\n  ngOnInit(): void {\n    this.currentTheme = localStorage.getItem(\"THEME\");\n\n    this.initForm();\n    this.changeContinent();\n  }\n\n  closePage() {\n    this.router.navigate([\"/maps\"]);\n  }\n\n  initForm() {\n    this.form = new FormGroup({\n      continent: new FormControl(localStorage.getItem(\"CONTINENT\") || \"All continents\")\n    })\n  }\n\n  toggleDarkMode(event: MatSlideToggleChange) {\n    event.checked ? this.setTheme(Theme.DARK_THEME, \"dark-theme\", \"light-theme\") :\n      this.setTheme(Theme.LIGHT_THEME, \"light-theme\", \"dark-theme\");\n  }\n\n  setTheme(value: Theme, addTheme: string, removeTheme: string) {\n    localStorage.setItem(\"THEME\", value);\n    document.body.classList.add(addTheme);\n    document.body.classList.remove(removeTheme);\n  }\n\n  changeContinent() {\n    this.form.get(\"continent\")?.valueChanges.subscribe(change => {\n      if (localStorage.getItem(\"GUESSES\") === null) {\n        this.filterCountries(change);\n      } else {\n        const dialog = this.dialog.open(MapsSettingsDialog);\n        dialog.afterClosed().subscribe(result => {\n          result ? this.filterCountries(change) :\n            this.form.get(\"continent\")?.setValue(localStorage.getItem(\"CONTINENT\"), { emitEvent: false });\n        });\n      }\n    })\n  }\n\n  filterCountries(continent: Continent) {\n    this.commonService.filterCountriesByContinent(continent);\n    this.commonService.generateRandomCountry();\n    localStorage.setItem(\"CONTINENT\", continent);\n    if (localStorage.getItem(\"GUESSES\")) {\n      localStorage.removeItem(\"GUESSES\");\n    }\n  }\n}\n\n@Component({\n  selector: \"maps-settings-dialog\",\n  templateUrl: \"settings-dialog.html\",\n})\nexport class MapsSettingsDialog { }",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2965,7 +2852,7 @@
         },
         {
             "name": "MapsSettingsDialog",
-            "id": "component-MapsSettingsDialog-d8baca653368e0020767a2d73503d0337654baef523bcc7dfdc33d700d772c49a20e2995ae1b62b820cfd4c959f851c0349ae1e18f261a5cb3a63a5a13b60c65",
+            "id": "component-MapsSettingsDialog-203d86f650e6ab70c7456c7409cba86fbeb9f20e95c9ef181b04be61b2b25791ae9625dd22876be86ce80e62efb89e2f37ebb6d4c9ae9b5c43bfd540a6fa9f3f",
             "file": "projects/mystery-country/src/app/maps/components/settings/settings.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2990,95 +2877,15 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from \"@angular/core\";\nimport { FormControl, FormGroup } from \"@angular/forms\";\nimport { MatDialog } from \"@angular/material/dialog\";\nimport { MatSlideToggleChange } from \"@angular/material/slide-toggle\";\nimport { Router } from \"@angular/router\";\nimport { Continent } from \"../../../shared/models/continent\";\nimport { Theme } from \"../../../shared/models/theme\";\nimport { CommonService } from \"../../services/common.service\";\n\n@Component({\n  selector: \"maps-settings\",\n  templateUrl: \"./settings.component.html\",\n  styleUrls: [\"./settings.component.scss\"],\n})\nexport class MapsSettingsComponent implements OnInit {\n  form: FormGroup;\n  currentTheme: Theme | string | null;\n  get theme(): typeof Theme {\n    return Theme;\n  }\n  continents: string[] = [\n    \"All continents\",\n    \"Africa\",\n    \"Asia\",\n    \"Europe\",\n    \"North America\",\n    \"South America\",\n    \"Australia/Oceania\",\n    \"Antarctica\"\n  ]\n\n  constructor(\n    private router: Router,\n    private commonService: CommonService,\n    private dialog: MatDialog\n  ) { }\n\n  ngOnInit(): void {\n    this.currentTheme = localStorage.getItem(\"THEME\");\n\n    this.initForm();\n    this.changeContinent();\n  }\n\n  closePage() {\n    this.router.navigate([\"/\"]);\n  }\n\n  initForm() {\n    this.form = new FormGroup({\n      continent: new FormControl(localStorage.getItem(\"CONTINENT\") || \"All continents\")\n    })\n  }\n\n  toggleDarkMode(event: MatSlideToggleChange) {\n    event.checked ? this.setTheme(Theme.DARK_THEME, \"dark-theme\", \"light-theme\") :\n      this.setTheme(Theme.LIGHT_THEME, \"light-theme\", \"dark-theme\");\n  }\n\n  setTheme(value: Theme, addTheme: string, removeTheme: string) {\n    localStorage.setItem(\"THEME\", value);\n    document.body.classList.add(addTheme);\n    document.body.classList.remove(removeTheme);\n  }\n\n  changeContinent() {\n    this.form.get(\"continent\")?.valueChanges.subscribe(change => {\n      if (localStorage.getItem(\"GUESSES\") === null) {\n        this.filterCountries(change);\n      } else {\n        const dialog = this.dialog.open(MapsSettingsDialog);\n        dialog.afterClosed().subscribe(result => {\n          result ? this.filterCountries(change) :\n            this.form.get(\"continent\")?.setValue(localStorage.getItem(\"CONTINENT\"), { emitEvent: false });\n        });\n      }\n    })\n  }\n\n  filterCountries(continent: Continent) {\n    this.commonService.filterCountriesByContinent(continent);\n    this.commonService.generateRandomCountry();\n    localStorage.setItem(\"CONTINENT\", continent);\n    if (localStorage.getItem(\"GUESSES\")) {\n      localStorage.removeItem(\"GUESSES\");\n    }\n  }\n}\n\n@Component({\n  selector: \"maps-settings-dialog\",\n  templateUrl: \"settings-dialog.html\",\n})\nexport class MapsSettingsDialog { }",
+            "sourceCode": "import { Component, OnInit } from \"@angular/core\";\nimport { FormControl, FormGroup } from \"@angular/forms\";\nimport { MatDialog } from \"@angular/material/dialog\";\nimport { MatSlideToggleChange } from \"@angular/material/slide-toggle\";\nimport { Router } from \"@angular/router\";\nimport { Continent } from \"../../../shared/models/continent\";\nimport { Theme } from \"../../../shared/models/theme\";\nimport { CommonService } from \"../../services/common.service\";\n\n@Component({\n  selector: \"maps-settings\",\n  templateUrl: \"./settings.component.html\",\n  styleUrls: [\"./settings.component.scss\"],\n})\nexport class MapsSettingsComponent implements OnInit {\n  form: FormGroup;\n  currentTheme: Theme | string | null;\n  get theme(): typeof Theme {\n    return Theme;\n  }\n  continents: string[] = [\n    \"All continents\",\n    \"Africa\",\n    \"Asia\",\n    \"Europe\",\n    \"North America\",\n    \"South America\",\n    \"Australia/Oceania\",\n    \"Antarctica\"\n  ]\n\n  constructor(\n    private router: Router,\n    private commonService: CommonService,\n    private dialog: MatDialog\n  ) { }\n\n  ngOnInit(): void {\n    this.currentTheme = localStorage.getItem(\"THEME\");\n\n    this.initForm();\n    this.changeContinent();\n  }\n\n  closePage() {\n    this.router.navigate([\"/maps\"]);\n  }\n\n  initForm() {\n    this.form = new FormGroup({\n      continent: new FormControl(localStorage.getItem(\"CONTINENT\") || \"All continents\")\n    })\n  }\n\n  toggleDarkMode(event: MatSlideToggleChange) {\n    event.checked ? this.setTheme(Theme.DARK_THEME, \"dark-theme\", \"light-theme\") :\n      this.setTheme(Theme.LIGHT_THEME, \"light-theme\", \"dark-theme\");\n  }\n\n  setTheme(value: Theme, addTheme: string, removeTheme: string) {\n    localStorage.setItem(\"THEME\", value);\n    document.body.classList.add(addTheme);\n    document.body.classList.remove(removeTheme);\n  }\n\n  changeContinent() {\n    this.form.get(\"continent\")?.valueChanges.subscribe(change => {\n      if (localStorage.getItem(\"GUESSES\") === null) {\n        this.filterCountries(change);\n      } else {\n        const dialog = this.dialog.open(MapsSettingsDialog);\n        dialog.afterClosed().subscribe(result => {\n          result ? this.filterCountries(change) :\n            this.form.get(\"continent\")?.setValue(localStorage.getItem(\"CONTINENT\"), { emitEvent: false });\n        });\n      }\n    })\n  }\n\n  filterCountries(continent: Continent) {\n    this.commonService.filterCountriesByContinent(continent);\n    this.commonService.generateRandomCountry();\n    localStorage.setItem(\"CONTINENT\", continent);\n    if (localStorage.getItem(\"GUESSES\")) {\n      localStorage.removeItem(\"GUESSES\");\n    }\n  }\n}\n\n@Component({\n  selector: \"maps-settings-dialog\",\n  templateUrl: \"settings-dialog.html\",\n})\nexport class MapsSettingsDialog { }",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "templateData": "<h2 mat-dialog-title>{{ \"maps.settings.filterCountriesDialogTitle\" | transloco }}</h2>\n<mat-dialog-content>\n  <p>{{ \"maps.settings.filterCountriesDialogText\" | transloco }}</p>\n</mat-dialog-content>\n<mat-dialog-actions align=\"end\">\n  <button mat-raised-button [mat-dialog-close]=\"false\">{{ \"maps.settings.no\" | transloco }}</button>\n  <button mat-raised-button color=\"warn\" [mat-dialog-close]=\"true\">{{ \"maps.settings.yes\" | transloco }}</button>\n</mat-dialog-actions>"
         },
         {
-            "name": "PageComponent",
-            "id": "component-PageComponent-7126d8c2607c946741c651482413b43feb72b2d63cac9d3ac173fde206a5e635eb4cdbf7ca7ac9327c7d4d05cf7ef619144c34c11609ad677081d0ee4e855064",
-            "file": "stories/page.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-page",
-            "styleUrls": [
-                "./page.css"
-            ],
-            "styles": [],
-            "template": "<article>    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "user",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "User | null",
-                    "optional": false,
-                    "description": "",
-                    "line": 64
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "doCreateAccount",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 74,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "doLogin",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 70,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "doLogout",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 66,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { User } from './User';\n\n@Component({\n  selector: 'storybook-page',\n  template: `<article>\n    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n})\nexport default class PageComponent {\n  user: User | null = null;\n\n  doLogout() {\n    this.user = null;\n  }\n\n  doLogin() {\n    this.user = { name: 'Jane Doe' };\n  }\n\n  doCreateAccount() {\n    this.user = { name: 'Jane Doe' };\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "section {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 24px;\n  padding: 48px 20px;\n  margin: 0 auto;\n  max-width: 600px;\n  color: #333;\n}\n\nsection h2 {\n  font-weight: 900;\n  font-size: 32px;\n  line-height: 1;\n  margin: 0 0 4px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nsection p {\n  margin: 1em 0;\n}\n\nsection a {\n  text-decoration: none;\n  color: #1ea7fd;\n}\n\nsection ul {\n  padding-left: 30px;\n  margin: 1em 0;\n}\n\nsection li {\n  margin-bottom: 8px;\n}\n\nsection .tip {\n  display: inline-block;\n  border-radius: 1em;\n  font-size: 11px;\n  line-height: 12px;\n  font-weight: 700;\n  background: #e7fdd8;\n  color: #66bf3c;\n  padding: 4px 12px;\n  margin-right: 10px;\n  vertical-align: top;\n}\n\nsection .tip-wrapper {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 40px;\n  margin-bottom: 40px;\n}\n\nsection .tip-wrapper svg {\n  display: inline-block;\n  height: 12px;\n  width: 12px;\n  margin-right: 4px;\n  vertical-align: top;\n  margin-top: 3px;\n}\n\nsection .tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
-                    "styleUrl": "./page.css"
-                }
-            ],
-            "stylesData": ""
-        },
-        {
             "name": "StartComponent",
-            "id": "component-StartComponent-baee63f07ffa57c84e4f2ba46cec21f24f7d85e90d7c75f35db28cdcb55c3074ebfc9d5a1ffcf5be55b1c3a18488e3073e0e9ef981e828e12b35690d6c0b0e82",
+            "id": "component-StartComponent-fbdc166c0646982a2f755febb1fd7a55dae94b698e02c30870d5b250cdb097782c261f8e631ae15f23c661bfe31a302bf975f669e96f52e707f66a61e94dcd3f",
             "file": "projects/mystery-country/src/app/core/components/start/start.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3155,7 +2962,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { Application } from '../../../shared/models/application';\n\n@Component({\n  selector: 'app-start',\n  templateUrl: './start.component.html',\n  styleUrls: ['./start.component.scss']\n})\nexport class StartComponent implements OnInit {\n  applications: Application[] = [];\n\n  constructor(private router: Router) {\n    this.applications = [\n      {\n        img: \"https://picsum.photos/200\",\n        title: \"MAPS\",\n        path: \"/maps\",\n        playable: true\n      },\n      {\n        img: \"https://picsum.photos/200\",\n        title: \"FLAGS\",\n        path: \"/flags\",\n        playable: false\n      }\n    ]\n  }\n\n  ngOnInit(): void {\n  }\n\n  selectApplication(path: string) {\n    this.router.navigate([path]);\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { Application } from '../../../../../../lib/models/application';\n\n@Component({\n  selector: 'app-start',\n  templateUrl: './start.component.html',\n  styleUrls: ['./start.component.scss']\n})\nexport class StartComponent implements OnInit {\n  applications: Application[] = [];\n\n  constructor(private router: Router) {\n    this.applications = [\n      {\n        img: \"https://picsum.photos/200\",\n        title: \"MAPS\",\n        path: \"/maps\",\n        playable: true\n      },\n      {\n        img: \"https://picsum.photos/200\",\n        title: \"FLAGS\",\n        path: \"/flags\",\n        playable: false\n      }\n    ]\n  }\n\n  ngOnInit(): void {\n  }\n\n  selectApplication(path: string) {\n    this.router.navigate([path]);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -3285,6 +3092,50 @@
                 {
                     "type": "exports",
                     "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LibAppListModule",
+            "id": "module-LibAppListModule-02d2c3e34ac5a752634da0bd6992a4c79572ea0f9739d764d1d828767bff5447fd4eac7371f283c3c57b003227813bdab82ab864630016520c1dce1f6c1cf7a2",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/lib/app-list/app-list.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\nimport { LibAppListComponent } from \"./app-list.component\";\n\n@NgModule({\n  declarations: [LibAppListComponent],\n  imports: [\n    CommonModule\n  ],\n  exports: [\n    LibAppListComponent\n  ]\n})\nexport class LibAppListModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LibAppListComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "LibAppListComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -3498,6 +3349,26 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "Accent",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib/loading-screen/loading-screen.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib/app-list/app-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -3518,50 +3389,10 @@
                 "defaultValue": "{\n  production: false,\n  baseUrl: \"https://country-game-api.herokuapp.com\"\n}"
             },
             {
-                "name": "Large",
+                "name": "MAPS",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedIn",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedIn",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Page.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedOut",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedOut",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Page.stories.ts",
+                "file": "projects/lib/layout/layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -3581,27 +3412,7 @@
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Secondary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Small",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Button.stories.ts",
+                "file": "projects/lib/loading-screen/loading-screen.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -3611,31 +3422,31 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
+                "file": "projects/lib/app-list/app-list.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<Button>",
-                "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+                "type": "Story<LibAppListComponent>",
+                "defaultValue": "(args: LibAppListComponent) => ({\n  props: args\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Header.stories.ts",
+                "file": "projects/lib/layout/layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<Header>",
-                "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+                "type": "Story<LibLayoutComponent>",
+                "defaultValue": "(args: LibLayoutComponent) => ({\n  props: args\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Page.stories.ts",
+                "file": "projects/lib/loading-screen/loading-screen.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<Page>",
-                "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                "type": "Story<LibLoadingScreenComponent>",
+                "defaultValue": "(args: LibLoadingScreenComponent) => ({\n  props: args\n})"
             }
         ],
         "functions": [],
@@ -3707,6 +3518,60 @@
             }
         ],
         "groupedVariables": {
+            "projects/lib/loading-screen/loading-screen.stories.ts": [
+                {
+                    "name": "Accent",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib/loading-screen/loading-screen.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib/loading-screen/loading-screen.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib/loading-screen/loading-screen.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LibLoadingScreenComponent>",
+                    "defaultValue": "(args: LibLoadingScreenComponent) => ({\n  props: args\n})"
+                }
+            ],
+            "projects/lib/app-list/app-list.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib/app-list/app-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib/app-list/app-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LibAppListComponent>",
+                    "defaultValue": "(args: LibAppListComponent) => ({\n  props: args\n})"
+                }
+            ],
             "projects/mystery-country/src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -3731,42 +3596,12 @@
                     "defaultValue": "{\n  production: false,\n  baseUrl: \"https://country-game-api.herokuapp.com\"\n}"
                 }
             ],
-            "stories/Button.stories.ts": [
+            "projects/lib/layout/layout.stories.ts": [
                 {
-                    "name": "Large",
+                    "name": "MAPS",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Secondary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Small",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
+                    "file": "projects/lib/layout/layout.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -3776,75 +3611,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
+                    "file": "projects/lib/layout/layout.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<Button>",
-                    "defaultValue": "(args: Button) => ({\n  props: args,\n})"
-                }
-            ],
-            "stories/Header.stories.ts": [
-                {
-                    "name": "LoggedIn",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "LoggedOut",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<Header>",
-                    "defaultValue": "(args: Header) => ({\n  props: args,\n})"
-                }
-            ],
-            "stories/Page.stories.ts": [
-                {
-                    "name": "LoggedIn",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "LoggedOut",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<Page>",
-                    "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                    "type": "Story<LibLayoutComponent>",
+                    "defaultValue": "(args: LibLayoutComponent) => ({\n  props: args\n})"
                 }
             ],
             "projects/mystery-country/src/app/maps/components/app-shell/menu-data.ts": [
@@ -3991,6 +3762,35 @@
         "status": "low",
         "files": [
             {
+                "filePath": "projects/lib/app-list/app-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LibAppListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib/app-list/app-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib/app-list/app-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib/layout/layout.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -4000,10 +3800,69 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib/layout/layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MAPS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib/layout/layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib/loading-screen/loading-screen.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "LibLoadingScreenComponent",
+                "coveragePercent": 66,
+                "coverageCount": "4/6",
+                "status": "good"
+            },
+            {
+                "filePath": "projects/lib/loading-screen/loading-screen.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Accent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib/loading-screen/loading-screen.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib/loading-screen/loading-screen.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib/models/application.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Application",
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
                 "status": "low"
@@ -4154,15 +4013,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/mystery-country/src/app/shared/models/application.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "Application",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/mystery-country/src/app/shared/models/country.ts",
                 "type": "interface",
                 "linktype": "interface",
@@ -4198,152 +4048,6 @@
                 "name": "environment",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Large",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Primary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Secondary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Small",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Header.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedIn",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Header.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedOut",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Header.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedIn",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedOut",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/Page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/User.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "User",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/button.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "ButtonComponent",
-                "coveragePercent": 83,
-                "coverageCount": "5/6",
-                "status": "very-good"
-            },
-            {
-                "filePath": "stories/header.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "HeaderComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/page.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "PageComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
                 "status": "low"
             }
         ]

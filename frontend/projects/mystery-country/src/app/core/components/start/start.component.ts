@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Application } from '../../../shared/models/application';
+import { Application } from '../../../../../../lib/models/application';
 
 @Component({
   selector: 'app-start',

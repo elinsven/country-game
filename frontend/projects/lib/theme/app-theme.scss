@@ -1,6 +1,7 @@
 @import "~@angular/material/theming";
 @import "./app-material-design-color.scss";
 @import "./shared.scss";
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500&display=swap");
 
 :root {
   --white: #dfe6e9;
@@ -10,9 +11,14 @@
 $app-light-primary: mat-palette($light-theme-primary);
 $app-light-accent: mat-palette($light-theme-accent);
 $app-light-warn: mat-palette($light-theme-warn);
-$app-light-theme: mat-light-theme($app-light-primary,
-    $app-light-accent,
-    $app-light-warn);
+$app-light-theme: mat-light-theme($app-light-primary, $app-light-accent, $app-light-warn);
+@include angular-material-theme($app-light-theme);
+
+$custom-typography: mat-typography-config($font-family: '"Nunito Sans", sans-serif;');
+@include angular-material-typography($custom-typography);
+@include mat-form-field-typography($custom-typography);
+@include mat-input-typography($custom-typography);
+@include mat-core($custom-typography);
 
 .light-theme {
   color: var(--dark-grey);
@@ -35,9 +41,7 @@ $app-light-theme: mat-light-theme($app-light-primary,
 $app-dark-primary: mat-palette($dark-theme-primary);
 $app-dark-accent: mat-palette($dark-theme-accent);
 $app-dark-warn: mat-palette($dark-theme-warn);
-$app-dark-theme: mat-dark-theme($app-dark-primary,
-    $app-dark-accent,
-    $app-dark-warn);
+$app-dark-theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
 
 .dark-theme {
   color: var(--white);
