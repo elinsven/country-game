@@ -1,0 +1,9 @@
+<div class="games wrapper">
+  <div class="image" *ngFor="let game of games" (click)="gameSelect.emit(game)">
+    <!-- <img [class.not-playable]="!game.playable" [src]="game.img" [alt]="'Image of ' + game.title + ' application'"> -->
+    <div class="title">
+      <h2>{{ game.title }}</h2>
+      <span *ngIf="!game.playable">COMING SOON</span>
+    </div>
+  </div>
+</div>

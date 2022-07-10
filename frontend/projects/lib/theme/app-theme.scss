@@ -1,0 +1,79 @@
+@import "~@angular/material/theming";
+@import "./app-material-design-color.scss";
+@import "./shared.scss";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+:root {
+  //Light Palette
+  --light-background: #fdfdfd;
+  --light-typography: #252525;
+  --light-primary: #252525;
+  --light-accent: #75a478;
+  --light-warn: #9e3636;
+
+  //Dark Palette
+  --dark-background: #252525;
+  --dark-typography: #fdfdfd;
+  --dark-primary: #fdfdfd;
+  --dark-accent: #addbb0;
+  --dark-warn: #db8484;
+}
+
+$custom-typography: mat-typography-config($font-family: 'Montserrat, sans-serif');
+@include angular-material-typography($custom-typography);
+@include mat-form-field-typography($custom-typography);
+@include mat-input-typography($custom-typography);
+@include mat-core($custom-typography);
+
+//Light Theme
+$app-light-primary: mat-palette($light-theme-primary);
+$app-light-accent: mat-palette($light-theme-accent);
+$app-light-warn: mat-palette($light-theme-warn);
+$app-light-theme: mat-light-theme($app-light-primary, $app-light-accent, $app-light-warn);
+@include angular-material-theme($app-light-theme);
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--light-background);
+  color: var(--light-typography);
+  font-weight: normal;
+
+  .country-image {
+    filter: invert(6%) sepia(7%) saturate(41%) hue-rotate(320deg) brightness(82%) contrast(79%);
+  }
+
+  .mat-button {
+    color: var(--light-primary);
+  }
+
+  a {
+    color: var(--light-typography);
+  }
+}
+
+//Dark Theme
+$app-dark-primary: mat-palette($dark-theme-primary);
+$app-dark-accent: mat-palette($dark-theme-accent);
+$app-dark-warn: mat-palette($dark-theme-warn);
+$app-dark-theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
+
+.dark-theme {
+  background-color: var(--dark-background);
+  color: var(--dark-typography);
+  @include angular-material-theme($app-dark-theme);
+
+  .country-image {
+    filter: invert(100%) sepia(99%) saturate(1%) hue-rotate(347deg) brightness(102%) contrast(98%);
+  }
+
+  .mat-button {
+    color: var(--dark-primary);
+  }
+
+  a {
+    color: var(--dark-typography);
+  }
+}
