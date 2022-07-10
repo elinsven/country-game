@@ -53,14 +53,13 @@ export class MapsSettingsComponent implements OnInit {
   }
 
   toggleDarkMode(event: MatSlideToggleChange) {
-    event.checked ? this.setTheme(Theme.DARK_THEME, "dark-theme", "light-theme") :
-      this.setTheme(Theme.LIGHT_THEME, "light-theme", "dark-theme");
-  }
-
-  setTheme(value: Theme, addTheme: string, removeTheme: string) {
-    localStorage.setItem("THEME", value);
-    document.body.classList.add(addTheme);
-    document.body.classList.remove(removeTheme);
+    if (event.checked) {
+      localStorage.setItem("THEME", Theme.DARK_THEME);
+      document.body.classList.add("dark-theme");
+    } else {
+      localStorage.removeItem("THEME");
+      document.body.classList.remove("dark-theme");
+    }
   }
 
   changeContinent() {

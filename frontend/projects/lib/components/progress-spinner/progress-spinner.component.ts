@@ -5,11 +5,11 @@ import { Component, Input, OnInit } from '@angular/core';
  */
 
 @Component({
-  selector: 'lib-loading-screen',
-  templateUrl: './loading-screen.component.html',
-  styleUrls: ['./loading-screen.component.scss']
+  selector: 'lib-progress-spinner',
+  templateUrl: './progress-spinner.component.html',
+  styleUrls: ['./progress-spinner.component.scss']
 })
-export class LibLoadingScreenComponent implements OnInit {
+export class LibProgressSpinnerComponent implements OnInit {
   /**
    * If spinner is visible
    */

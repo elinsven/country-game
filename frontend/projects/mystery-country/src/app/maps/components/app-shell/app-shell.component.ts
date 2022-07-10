@@ -37,16 +37,7 @@ export class MapsAppShellComponent implements OnInit {
 
   getTheme() {
     const theme = localStorage.getItem("THEME");
-    switch (theme) {
-      case Theme.LIGHT_THEME:
-        this.setTheme(Theme.LIGHT_THEME, "light-theme");
-        break;
-      case Theme.DARK_THEME:
-        this.setTheme(Theme.DARK_THEME, "dark-theme");
-        break;
-      default:
-        this.setTheme(Theme.LIGHT_THEME, "light-theme");
-    }
+    theme === Theme.DARK_THEME ? this.setTheme(Theme.DARK_THEME, "dark-theme") : null;
   }
 
   setTheme(value: Theme, addTheme: string) {

@@ -1,6 +1,0 @@
-<div class="applications" *ngFor="let application of applications">
-  <div (click)="applicationSelect.emit(application)">
-    <img [src]="application.img" [alt]="'Image of' + application.title + 'application'">
-    <h2>{{ application.title }}</h2>
-  </div>
-</div>

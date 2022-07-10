@@ -10,11 +10,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { LibLayoutModule } from "projects/lib/layout/layout.module";
-import { LibLoadingScreenModule } from "projects/lib/loading-screen/loading-screen.module";
+import { LibHeaderModule } from "projects/lib/components/header/header.module";
+import { LibProgressSpinnerModule } from "projects/lib/components/progress-spinner/progress-spinner.module";
 import { TranslocoRootModule } from "../../transloco-root.module";
 import { MapsAppShellComponent } from "./app-shell/app-shell.component";
-import { MapsApplicationsComponent } from "./applications/applications.component";
+import { GamesComponent } from "./games/games.component";
 import { MapsGamePageComponent } from "./game-page/game-page.component";
 import { MapsGuessingFormComponent } from "./game-page/guessing-form/guessing-form.component";
 import { MapsGuessingListComponent } from "./game-page/guessing-list/guessing-list.component";
@@ -26,7 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     MapsAppShellComponent,
-    MapsApplicationsComponent,
+    GamesComponent,
     MapsHowToPlayComponent,
     MapsLeaderboardComponent,
     MapsSettingsComponent,
@@ -50,8 +50,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSlideToggleModule,
     MatSnackBarModule,
     TranslocoRootModule,
-    LibLayoutModule,
-    LibLoadingScreenModule
+    LibHeaderModule,
+    LibProgressSpinnerModule
   ],
   providers: [],
 })

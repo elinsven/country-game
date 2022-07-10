@@ -41,9 +41,9 @@
       "leaderboard": "LEADERBOARD",
       "closePage": "Close leaderboard page"
     },
-    "applications": {
-      "applications": "APPLICATIONS",
-      "closePage": "Close applications page"
+    "games": {
+      "games": "GAMES",
+      "closePage": "Close games page"
     }
   }
 }

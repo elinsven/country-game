@@ -1,4 +1,4 @@
-export interface Application {
+export interface Game {
   img: string;
   title: string;
   path: string;

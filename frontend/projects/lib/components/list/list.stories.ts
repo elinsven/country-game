@@ -1,28 +1,40 @@
 import { Meta, moduleMetadata, Story } from "@storybook/angular";
-import { LibAppListComponent } from "./app-list.component";
-import { LibAppListModule } from "./app-list.module";
+import { LibListComponent } from "./list.component";
+import { LibListModule } from "./list.module";
 
 export default {
-  title: "Lib/App List",
-  component: LibAppListComponent,
+  title: "Components/List",
+  component: LibListComponent,
   decorators: [
     moduleMetadata({
       imports: [
-        LibAppListModule
+        LibListModule
       ]
     })
-  ]
+  ],
+  argTypes: {
+    ngOnInit: {
+      table: {
+        disable: true,
+      },
+    },
+    gameSelect: {
+      table: {
+        disable: true,
+      },
+    },
+  }
 } as Meta;
 
-const Template: Story<LibAppListComponent> = (args: LibAppListComponent) => ({
+const Template: Story<LibListComponent> = (args: LibListComponent) => ({
   props: args
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  applications: [
+export const List = Template.bind({});
+List.args = {
+  games: [
     {
-      img: "https://picsum.photos/200",
+      img: "../assets/maps_game_icon.png",
       title: "MAPS",
       path: "/maps",
       playable: true

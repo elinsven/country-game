@@ -1,5 +1,6 @@
 <div class="wrapper">
-  <img [src]="sanitize('data:image/jpg;base64, ' + arrayBufferToBase64(randomCountry?.countryimage?.data))"
+  <img class="country-image"
+    [src]="sanitize('data:image/jpg;base64, ' + arrayBufferToBase64(randomCountry?.countryimage?.data))"
     alt="Image of a country" />
 
   <maps-guessing-form [countries]="countries" [randomCountry]="randomCountry" (playAgain)="playAgain($event)">

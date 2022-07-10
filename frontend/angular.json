@@ -36,6 +36,11 @@
                 "glob": "**/*",
                 "input": "projects/mystery-country/src/assets",
                 "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/lib/assets",
+                "output": "assets"
               }
             ],
             "styles": [

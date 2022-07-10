@@ -1,14 +1,14 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { LibAppListComponent } from "./app-list.component";
+import { LibListComponent } from "./list.component";
 
 @NgModule({
-  declarations: [LibAppListComponent],
+  declarations: [LibListComponent],
   imports: [
     CommonModule
   ],
   exports: [
-    LibAppListComponent
+    LibListComponent
   ]
 })
-export class LibAppListModule { }
+export class LibListModule { }

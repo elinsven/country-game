@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppShellComponent } from './core/components/app-shell/app-shell.component';
 import { StartComponent } from './core/components/start/start.component';
 import { MapsAppShellComponent } from './maps/components/app-shell/app-shell.component';
-import { MapsApplicationsComponent } from './maps/components/applications/applications.component';
+import { GamesComponent } from './maps/components/games/games.component';
 import { MapsGamePageComponent } from './maps/components/game-page/game-page.component';
 import { MapsHowToPlayComponent } from './maps/components/how-to-play/how-to-play.component';
 import { MapsLeaderboardComponent } from './maps/components/leaderboard/leaderboard.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: "", component: MapsGamePageComponent },
       { path: "how-to-play", component: MapsHowToPlayComponent },
       { path: "leaderboard", component: MapsLeaderboardComponent },
-      { path: "applications", component: MapsApplicationsComponent },
+      { path: "applications", component: GamesComponent },
       { path: "settings", component: MapsSettingsComponent }
     ]
   }

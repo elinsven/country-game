@@ -1,6 +1,6 @@
-<lib-loading-screen [isLoading]="!countries" [loadingText]="'maps.appShell.loadingGame' | transloco">
-</lib-loading-screen>
+<lib-progress-spinner [isLoading]="!countries" [loadingText]="'maps.appShell.loadingGame' | transloco">
+</lib-progress-spinner>
 
 <div *ngIf="countries">
-  <lib-app-list [menuItems]="menuItems" (pageChange)="pageChange($event)"></lib-app-list>
+  <lib-header [menuItems]="menuItems" (pageChange)="pageChange($event)"></lib-header>
 </div>

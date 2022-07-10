@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Application } from '../../../../../../lib/models/application';
+import { Game } from '../../../../../../lib/models/game';
 
 @Component({
   selector: 'app-start',
@@ -8,12 +8,12 @@ import { Application } from '../../../../../../lib/models/application';
   styleUrls: ['./start.component.scss']
 })
 export class StartComponent implements OnInit {
-  applications: Application[] = [];
+  games: Game[] = [];
 
   constructor(private router: Router) {
-    this.applications = [
+    this.games = [
       {
-        img: "https://picsum.photos/200",
+        img: "../../../../../../lib/assets/maps_game_icon.png",
         title: "MAPS",
         path: "/maps",
         playable: true
@@ -30,8 +30,8 @@ export class StartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectApplication(path: string) {
-    this.router.navigate([path]);
+  selectGame(game: Game) {
+    this.router.navigate([game.path]);
   }
 
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { LibLayoutModule } from 'projects/lib/layout/layout.module';
+import { LibHeaderModule } from 'projects/lib/components/header/header.module';
+import { LibListModule } from 'projects/lib/components/list/list.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppShellComponent } from './core/components/app-shell/app-shell.component';
@@ -21,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     MapsModule,
-    LibLayoutModule,
+    LibHeaderModule,
+    LibListModule,
     HttpClientModule,
     TranslocoRootModule
   ],

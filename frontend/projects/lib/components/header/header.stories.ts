@@ -2,32 +2,44 @@ import { Meta, moduleMetadata, Story } from "@storybook/angular";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from "@angular/material/icon";
-import { LibLayoutComponent } from "./layout.component";
-import { LibLayoutModule } from "./layout.module";
+import { LibHeaderComponent } from "./header.component";
+import { LibHeaderModule } from "./header.module";
 import { RouterTestingModule } from "@angular/router/testing";
 
 export default {
-  title: "Lib/Layout",
-  component: LibLayoutComponent,
+  title: "Components/Header",
+  component: LibHeaderComponent,
   decorators: [
     moduleMetadata({
       imports: [
-        LibLayoutModule,
+        LibHeaderModule,
         RouterTestingModule,
         MatButtonModule,
         MatDividerModule,
         MatIconModule
       ]
     })
-  ]
+  ],
+  argTypes: {
+    ngOnInit: {
+      table: {
+        disable: true,
+      },
+    },
+    pageChange: {
+      table: {
+        disable: true,
+      },
+    },
+  }
 } as Meta;
 
-const Template: Story<LibLayoutComponent> = (args: LibLayoutComponent) => ({
+const Template: Story<LibHeaderComponent> = (args: LibHeaderComponent) => ({
   props: args
 });
 
-export const MAPS = Template.bind({});
-MAPS.args = {
+export const Header = Template.bind({});
+Header.args = {
   menuItems: [
     {
       path: "/",
