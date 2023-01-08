@@ -8,13 +8,13 @@ import { MapsGamePageComponent } from './maps/components/game-page/game-page.com
 import { MapsHowToPlayComponent } from './maps/components/how-to-play/how-to-play.component';
 import { MapsLeaderboardComponent } from './maps/components/leaderboard/leaderboard.component';
 import { MapsSettingsComponent } from './maps/components/settings/settings.component';
+import { SettingsComponent } from './core/components/settings/settings.component';
 
 const routes: Routes = [
   {
     path: "", component: AppShellComponent, children: [
-      {
-        path: "", component: StartComponent
-      },
+      { path: "", component: StartComponent },
+      { path: "settings", component: SettingsComponent },
     ]
   },
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: "", component: MapsGamePageComponent },
       { path: "how-to-play", component: MapsHowToPlayComponent },
       { path: "leaderboard", component: MapsLeaderboardComponent },
-      { path: "applications", component: GamesComponent },
+      { path: "games", component: GamesComponent },
       { path: "settings", component: MapsSettingsComponent }
     ]
   }

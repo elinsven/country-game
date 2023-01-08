@@ -1,35 +1,27 @@
 #header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr repeat(1, auto) 1fr;
+  grid-column-gap: 5px;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  justify-items: center;
+  color: var(--accent);
 
-  h1 {
-    margin: 0 10px;
-    display: inline-block;
-    vertical-align: middle;
+  #title {
+    grid-column-start: 2;
     cursor: pointer;
+
+    h1 {
+      margin: 10px 0;
+    }
+  }
+
+  #menu-button {
+    margin-left: auto;
   }
 }
 
-.menuItems {
-  margin: 5px 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-
-  li {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 26px;
   }
-}
-
-.mat-divider {
-  max-width: 450px;
-  margin-left: auto;
-  margin-right: auto;
 }

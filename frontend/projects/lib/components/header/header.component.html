@@ -1,23 +1,33 @@
-<div class="container">
-  <header id="header">
+<header id="header">
 
-    <nav class="menuItems">
-      <ul>
-        <li *ngFor="let item of menuItems" (click)="pageChange.emit(item)">
-          <button *ngIf="item.icon" mat-icon-button [attr.aria-label]="item.ariaLabel">
-            <mat-icon>{{ item.icon }}</mat-icon>
-          </button>
-          <h1 *ngIf="item.title">{{ item.title }}</h1>
-        </li>
-      </ul>
-    </nav>
+  <div id="title">
+    <h1 *ngIf="title" [routerLink]="titlePath">{{ title }}</h1>
+  </div>
 
-  </header>
+  <div id="menu-button" *ngIf="menuItems?.length">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <div *ngFor="let menuItem of menuItems">
+        <button mat-menu-item (click)="pageChange.emit(menuItem.path)" [attr.aria-label]="menuItem.ariaLabel">
+          <mat-icon>{{ menuItem.icon }}</mat-icon>
+          <span>{{ menuItem.title }}</span>
+        </button>
+      </div>
+    </mat-menu>
+  </div>
 
-  <mat-divider></mat-divider>
+</header>
 
-  <main id="content">
-    <router-outlet></router-outlet>
-  </main>
+<mat-divider></mat-divider>
 
-</div>
+<main id="content">
+  <router-outlet></router-outlet>
+</main>
+
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="First">Content 1</mat-tab>
+  <mat-tab label="Second">Content 2</mat-tab>
+  <mat-tab label="Third">Content 3</mat-tab>
+</mat-tab-group>

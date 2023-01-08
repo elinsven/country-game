@@ -2,7 +2,7 @@
 @import "./app-material-design-color.scss";
 @import "./shared.scss";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 
 :root {
   //Light Palette
@@ -18,9 +18,11 @@
   --dark-primary: #fdfdfd;
   --dark-accent: #addbb0;
   --dark-warn: #db8484;
+
+  --accent: pink;
 }
 
-$custom-typography: mat-typography-config($font-family: 'Montserrat, sans-serif');
+$custom-typography: mat-typography-config($font-family: "'Montserrat', sans-serif");
 @include angular-material-typography($custom-typography);
 @include mat-form-field-typography($custom-typography);
 @include mat-input-typography($custom-typography);
@@ -39,7 +41,10 @@ body {
   font-family: "Montserrat", sans-serif;
   background-color: var(--light-background);
   color: var(--light-typography);
-  font-weight: normal;
+
+  h1 {
+    font-weight: bold;
+  }
 
   .country-image {
     filter: invert(6%) sepia(7%) saturate(41%) hue-rotate(320deg) brightness(82%) contrast(79%);
@@ -51,6 +56,11 @@ body {
 
   a {
     color: var(--light-typography);
+  }
+
+  .game-list {
+    background-color: rgba(37, 37, 37, 0.3);
+    box-shadow: 3px 3px 0px 0px rgba(37, 37, 37, 0.5);
   }
 }
 
@@ -75,5 +85,10 @@ $app-dark-theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-w
 
   a {
     color: var(--dark-typography);
+  }
+
+  .game-list {
+    background-color: rgba(253, 253, 253, 0.3);
+    box-shadow: 3px 3px 0px 0px rgba(253, 253, 253, 0.5);
   }
 }

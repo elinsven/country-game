@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { MenuItem } from "projects/lib/models/menuItem";
-import { Theme } from "../../../shared/models/theme";
+import { Theme } from "../../../../../../lib/models/theme";
 
 @Component({
   selector: "main-app-shell",
@@ -9,13 +9,16 @@ import { Theme } from "../../../shared/models/theme";
   styleUrls: ["./app-shell.component.scss"]
 })
 export class AppShellComponent implements OnInit {
+  appTitle = "MYSTERY COUNTRY"; //Transloco
   menuItems: MenuItem[] = [];
 
   constructor(private router: Router) {
     this.menuItems = [
       {
-        path: "/",
-        title: "MYSTERY COUNTRY"
+        path: "/settings",
+        title: "Settings",
+        icon: "settings",
+        ariaLabel: "To the 'Settings' page"
       }
     ]
   }
@@ -35,10 +38,10 @@ export class AppShellComponent implements OnInit {
   }
 
   translateMenuItem() {
-
+    //transloco
   }
 
-  pageChange(menuItem: MenuItem) {
-    this.router.navigate([menuItem.path]);
+  pageChange(path: string) {
+    this.router.navigate([path]);
   }
 }

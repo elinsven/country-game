@@ -22,6 +22,7 @@ import { MapsHowToPlayComponent } from "./how-to-play/how-to-play.component";
 import { MapsLeaderboardComponent } from "./leaderboard/leaderboard.component";
 import { MapsSettingsComponent, MapsSettingsDialog } from "./settings/settings.component";
 import { MatSelectModule } from '@angular/material/select';
+import { LibSettingsModule } from "projects/lib/components/settings/settings.module";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSnackBarModule,
     TranslocoRootModule,
     LibHeaderModule,
-    LibProgressSpinnerModule
+    LibProgressSpinnerModule,
+    LibSettingsModule
   ],
   providers: [],
 })

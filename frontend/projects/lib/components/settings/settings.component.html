@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <ng-template [ngIf]="darkMode">
+    <div class="setting">
+      <p>Dark mode</p>
+      <mat-slide-toggle color="primary" (change)="dakrModeToggle($event)" [checked]="currentTheme === theme.DARK_THEME">
+      </mat-slide-toggle>
+    </div>
+  </ng-template>
+
+  <mat-divider></mat-divider>
+
+  <ng-template [ngIf]="settings.length >= 1">
+    <div *ngFor="let setting of settings">
+
+      <div *ngIf="setting.formControl === 'Toggle'">
+        <p>{{ setting.title }}</p>
+        <mat-slide-toggle color="primary" (change)="toggleChange.emit($event)"></mat-slide-toggle>
+      </div>
+
+      <div *ngIf="setting.formControl === 'Select'">
+
+      </div>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+  </ng-template>
+
+</div>

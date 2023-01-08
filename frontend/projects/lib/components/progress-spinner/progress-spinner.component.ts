@@ -15,6 +15,10 @@ export class LibProgressSpinnerComponent implements OnInit {
    */
   @Input() isLoading: boolean = false;
   /**
+   * Size of the spinner
+   */
+  @Input() diameter: number = 100;
+  /**
    * Text under spinner
    */
   @Input() loadingText: string;

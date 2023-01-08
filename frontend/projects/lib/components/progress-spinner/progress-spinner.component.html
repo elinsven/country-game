@@ -1,6 +1,6 @@
 <ng-template [ngIf]="isLoading">
-  <div class="loading-screen">
-    <mat-spinner aria-label="Progress Spinner" [color]="spinnerColor"></mat-spinner>
+  <div class="spinner">
+    <mat-spinner aria-label="Progress Spinner" [diameter]="diameter" [color]="spinnerColor"></mat-spinner>
     <p>{{ loadingText }}</p>
   </div>
 </ng-template>

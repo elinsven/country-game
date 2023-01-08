@@ -6,14 +6,7 @@
     </button>
   </div>
 
-
-  <div class="setting">
-    <p>{{ "maps.settings.darkMode" | transloco }}</p>
-    <mat-slide-toggle color="primary" (change)="toggleDarkMode($event)" [checked]="currentTheme === theme.DARK_THEME">
-    </mat-slide-toggle>
-  </div>
-
-  <mat-divider></mat-divider>
+  <lib-settings></lib-settings>
 
   <div class="setting">
     <p>{{ "maps.settings.filterCountries" | transloco }}</p>

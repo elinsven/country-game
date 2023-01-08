@@ -1,4 +1,4 @@
-import { Meta, Story, moduleMetadata } from "@storybook/angular";
+import { Meta, StoryFn, moduleMetadata } from "@storybook/angular";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { LibProgressSpinnerComponent } from "./progress-spinner.component";
 import { LibProgressSpinnerModule } from "./progress-spinner.module";
@@ -23,7 +23,7 @@ export default {
   }
 } as Meta;
 
-const Template: Story<LibProgressSpinnerComponent> = (args: LibProgressSpinnerComponent) => ({
+const Template: StoryFn<LibProgressSpinnerComponent> = (args: LibProgressSpinnerComponent) => ({
   props: args
 });
 

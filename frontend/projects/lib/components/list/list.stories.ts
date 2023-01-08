@@ -1,4 +1,4 @@
-import { Meta, moduleMetadata, Story } from "@storybook/angular";
+import { Meta, moduleMetadata, StoryFn } from "@storybook/angular";
 import { LibListComponent } from "./list.component";
 import { LibListModule } from "./list.module";
 
@@ -26,7 +26,7 @@ export default {
   }
 } as Meta;
 
-const Template: Story<LibListComponent> = (args: LibListComponent) => ({
+const Template: StoryFn<LibListComponent> = (args: LibListComponent) => ({
   props: args
 });
 
@@ -34,25 +34,25 @@ export const List = Template.bind({});
 List.args = {
   games: [
     {
-      img: "../assets/maps_game_icon.png",
+      img: "../assets/bonbon-planet-earth.png",
       title: "MAPS",
       path: "/maps",
       playable: true
     },
     {
-      img: "https://picsum.photos/200",
+      img: "../assets/bonbon-blue-flag.png",
       title: "FLAGS",
       path: "/flags",
       playable: false
     },
     {
-      img: "https://picsum.photos/200",
+      img: "../assets/bonbon-planet-earth.png",
       title: "LANGUAGES",
       path: "/flags",
       playable: false
     },
     {
-      img: "https://picsum.photos/200",
+      img: "../assets/bonbon-planet-earth.png",
       title: "CITIES",
       path: "/flags",
       playable: false

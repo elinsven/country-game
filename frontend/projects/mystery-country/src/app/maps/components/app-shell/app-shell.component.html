@@ -2,5 +2,6 @@
 </lib-progress-spinner>
 
 <div *ngIf="countries">
-  <lib-header [menuItems]="menuItems" (pageChange)="pageChange($event)"></lib-header>
+  <lib-header [menuItems]="menuItems" [title]="gameTitle" [titlePath]="path" (pageChange)="pageChange($event)">
+  </lib-header>
 </div>

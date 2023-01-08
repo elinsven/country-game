@@ -2,27 +2,27 @@ import { MenuItem } from "projects/lib/models/menuItem";
 
 export const menuData: MenuItem[] = [
   {
-    path: "/maps/how-to-play",
-    icon: "help",
-    ariaLabel: "Navigates to how to play page"
-  },
-  {
-    path: "/maps/applications",
-    icon: "apps",
-    ariaLabel: "Navigates to applications page"
-  },
-  {
-    path: "/maps",
-    title: "MAPS"
-  },
-  {
     path: "/maps/leaderboard",
+    title: "Leaderboard",
     icon: "leaderboard",
-    ariaLabel: "Navigates to leaderboard page"
+    ariaLabel: "To the 'Leaderboard' page"
+  },
+  {
+    path: "/maps/games",
+    title: "Other games",
+    icon: "apps",
+    ariaLabel: "To the 'Other games' page"
+  },
+  {
+    path: "/maps/how-to-play",
+    title: "Help",
+    icon: "help",
+    ariaLabel: "To the 'Help' page",
   },
   {
     path: "/maps/settings",
+    title: "Settings",
     icon: "settings",
-    ariaLabel: "Navigates to settings page"
+    ariaLabel: "To the 'Settings' page"
   }
-]
+];

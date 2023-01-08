@@ -1,6 +1,6 @@
 export interface MenuItem {
   path: string;
-  title?: string;
-  icon?: string;
-  ariaLabel?: string;
+  title: string;
+  icon: string;
+  ariaLabel: string;
 }

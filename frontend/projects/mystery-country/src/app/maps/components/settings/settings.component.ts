@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 import { Router } from "@angular/router";
 import { Continent } from "../../../shared/models/continent";
-import { Theme } from "../../../shared/models/theme";
 import { CommonService } from "../../services/common.service";
 
 @Component({
@@ -14,10 +12,6 @@ import { CommonService } from "../../services/common.service";
 })
 export class MapsSettingsComponent implements OnInit {
   form: FormGroup;
-  currentTheme: Theme | string | null;
-  get theme(): typeof Theme {
-    return Theme;
-  }
   continents: string[] = [
     "All continents",
     "Africa",
@@ -36,8 +30,6 @@ export class MapsSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentTheme = localStorage.getItem("THEME");
-
     this.initForm();
     this.changeContinent();
   }
@@ -50,16 +42,6 @@ export class MapsSettingsComponent implements OnInit {
     this.form = new FormGroup({
       continent: new FormControl(localStorage.getItem("CONTINENT") || "All continents")
     })
-  }
-
-  toggleDarkMode(event: MatSlideToggleChange) {
-    if (event.checked) {
-      localStorage.setItem("THEME", Theme.DARK_THEME);
-      document.body.classList.add("dark-theme");
-    } else {
-      localStorage.removeItem("THEME");
-      document.body.classList.remove("dark-theme");
-    }
   }
 
   changeContinent() {

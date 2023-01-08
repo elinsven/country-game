@@ -1,0 +1,12 @@
+@import "~@angular/material/theming";
+@import "./material-v2.scss";
+
+$app-light-primary: mat-palette($primary);
+$app-light-accent: mat-palette($accent);
+$app-light-warn: mat-palette($warn);
+$app-light-theme: mat-light-theme($app-light-primary, $app-light-accent, $app-light-warn);
+@include angular-material-theme($app-light-theme);
+
+:root {
+  --accent: green;
+}

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'projects/lib/models/menuItem';
 import { Country } from 'projects/mystery-country/src/app/shared/models/country';
-import { Theme } from 'projects/mystery-country/src/app/shared/models/theme';
+import { Theme } from 'projects/lib/models/theme';
 import { ApiService } from '../../services/api.service';
 import { CommonService } from '../../services/common.service';
 import { menuData } from './menu-data';
@@ -15,7 +15,9 @@ import { menuData } from './menu-data';
 export class MapsAppShellComponent implements OnInit {
   countries: Country[];
   randomCountry: Country;
-  menuItems: MenuItem[];
+  gameTitle = "MAPS"; //Transloco
+  path = "/maps";
+  menuItems: MenuItem[]; //Transloco
 
   constructor(
     private api: ApiService,
@@ -53,9 +55,7 @@ export class MapsAppShellComponent implements OnInit {
 
   }
 
-  pageChange(menuItem: MenuItem) {
-    this.router.navigate([menuItem.path]);
+  pageChange(path: string) {
+    this.router.navigate([path]);
   }
-
-
 }

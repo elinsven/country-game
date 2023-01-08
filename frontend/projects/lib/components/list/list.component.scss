@@ -14,12 +14,17 @@
 .image {
   cursor: pointer;
   display: flex;
-  width: 200px;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 150px;
   height: 200px;
-  border-radius: 10%;
+  border-radius: 8%;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--light-primary);
+
+  img {
+    width: 40%;
+  }
 
   /*   img {
     border-radius: 10%;
@@ -36,7 +41,7 @@
     left: 50%;
     transform: translate(-50%, -50%); */
 
-    h2 {
+    h3 {
       margin: 0;
     }
   }

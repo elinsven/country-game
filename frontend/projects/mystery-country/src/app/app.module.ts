@@ -10,12 +10,15 @@ import { MapsModule } from './maps/components/maps.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LibSettingsModule } from 'projects/lib/components/settings/settings.module';
+import { SettingsComponent } from './core/components/settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppShellComponent,
-    StartComponent,
+    SettingsComponent,
+    StartComponent
   ],
   imports: [
     AppRoutingModule,
@@ -24,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MapsModule,
     LibHeaderModule,
     LibListModule,
+    LibSettingsModule,
     HttpClientModule,
     TranslocoRootModule
   ],
